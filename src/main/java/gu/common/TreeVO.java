@@ -2,7 +2,7 @@ package gu.common;
 
 import java.util.List;
 
-public class TreeVO {
+public class TreeVO { 
     private String key;
     private String title;
     private String parent;
