@@ -5,6 +5,8 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="groupware9" />
+          <element id="jpa-descriptors" facet="project9/jpa/JPA" />
+          <element id="module-output" name="project9" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.1.2.RELEASE" />
@@ -59,6 +61,7 @@
       </element>
       <element id="javaee-facet-resources" facet="groupware9/web/Web" />
       <element id="javaee-facet-resources" facet="groupware9/web/Web2" />
+      <element id="javaee-facet-resources" facet="project9/web/Web" />
     </root>
   </artifact>
 </component>
