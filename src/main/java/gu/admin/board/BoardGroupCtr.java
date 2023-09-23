@@ -29,6 +29,8 @@ public class BoardGroupCtr {
     @RequestMapping(value = "/adBoardGroupList")
        public String boardGroupList(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
+
+        System.out.println("userno: " + userno);
         
         etcSvc.setCommonAttribute(userno, modelMap);
         
