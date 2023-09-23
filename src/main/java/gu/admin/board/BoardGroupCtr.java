@@ -30,8 +30,6 @@ public class BoardGroupCtr {
        public String boardGroupList(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
 
-        System.out.println("userno: " + userno);
-        
         etcSvc.setCommonAttribute(userno, modelMap);
         
         List<?> listview   = boardSvc.selectBoardGroupList();
