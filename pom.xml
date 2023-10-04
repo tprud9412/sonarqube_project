@@ -12,12 +12,10 @@
     <version>3.3.1</version>
   </dependency>
 
-  <!-- Mybatis Spring -->
-  <dependency>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis-spring</artifactId>
-    <version>1.2.4</version>
-  </dependency>
+  <properties>
+    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
+    <sonar.login>squ_034929562df06ec6c20894e0138e8424a3b302fc</sonar.login>
+  </properties>
 
   <dependency>
     <groupId>commons-dbcp</groupId>
