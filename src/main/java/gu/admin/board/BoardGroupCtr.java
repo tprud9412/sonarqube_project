@@ -29,7 +29,7 @@ public class BoardGroupCtr {
     @RequestMapping(value = "/adBoardGroupList")
        public String boardGroupList(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
-
+        
         etcSvc.setCommonAttribute(userno, modelMap);
         
         List<?> listview   = boardSvc.selectBoardGroupList();
