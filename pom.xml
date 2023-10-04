@@ -274,7 +274,7 @@
   </build>
 
   <properties>
-    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
+    <sonar.host.url>http://116.127.180.54:9000/</sonar.host.url>
     <sonar.login>squ_034929562df06ec6c20894e0138e8424a3b302fc</sonar.login>
   </properties>
 
