@@ -78,7 +78,10 @@ $(function(){
 });
 
 function TreenodeActivate(node) {
-	location.href = "boardList?bgno=" + node.data.key;
+	// bgno 값이 1일 때는 boardList로 요청, 그 외에는 boardList?bgno=<bgno>로 요청
+	var bgno = node.data.key;
+	var url = (bgno === "1") ? "boardList" : "boardList?bgno=" + bgno;
+	location.href = url;
 }
 
 </script>
