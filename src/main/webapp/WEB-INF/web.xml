@@ -16,7 +16,28 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-	<filter>
+    <filter>
+        <filter-name>multipartFilter</filter-name>
+        <filter-class>
+            org.springframework.web.multipart.support.MultipartFilter
+        </filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>multipartFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>xssFilter</filter-name>
+        <filter-class>gu.util.CrossScriptingFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>xssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
