@@ -163,6 +163,7 @@
           <!-- 설정 추가 (필요한 경우) -->
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -201,6 +202,13 @@
       </plugin>
     </plugins>
   </build>
+
+  <properties>
+    <sonar.host.url>${sonar.host.url}</sonar.host.url>
+    <sonar.login>${sonar.login}</sonar.login>
+  </properties>
+
+
   <distributionManagement>
     <repository>
       <id>central</id>
@@ -208,18 +216,5 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
   </distributionManagement>
-
-  <profiles>
-    <profile>
-      <id>sonar-properties</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <sonar.host.url>${sonar.host.url}</sonar.host.url>
-        <sonar.login>${sonar.login}</sonar.login>
-      </properties>
-    </profile>
-  </profiles>
 
 </project>
