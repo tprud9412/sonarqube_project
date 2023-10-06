@@ -245,14 +245,14 @@
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.10.0.2594</version>
+        <version>3.9.0.2155</version> <!-- 최신 버전을 사용하도록 업데이트하세요. -->
       </plugin>
     </plugins>
   </build>
 
   <properties>
-    <sonar.host.url>http://localhost:9000</sonar.host.url>
-    <sonar.token>squ_da48da8d5cc9b084bff15f30a3e2d6efbcfd2aab</sonar.token>
+    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
+    <sonar.login>squ_034929562df06ec6c20894e0138e8424a3b302fc</sonar.login>
   </properties>
 
 
