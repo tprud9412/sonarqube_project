@@ -32,7 +32,7 @@ public class MailInfoCtr {
     /**
      * 리스트.
      */
-    @RequestMapping(value = "/mailInfoList", method = RequestMethod.GET)
+    @RequestMapping(value = "/mailInfoList")
     public String mailInfoList(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         // 페이지 공통: alert
         String userno = request.getSession().getAttribute("userno").toString();
@@ -50,7 +50,7 @@ public class MailInfoCtr {
     /** 
      * 쓰기. 
      */
-    @RequestMapping(value = "/mailInfoForm", method = RequestMethod.GET)
+    @RequestMapping(value = "/mailInfoForm")
     public String mailInfoForm(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
         // 페이지 공통: alert
         String userno = request.getSession().getAttribute("userno").toString();
@@ -70,7 +70,7 @@ public class MailInfoCtr {
     /**
      * 저장.
      */
-    @RequestMapping(value = "/mailInfoSave", method = RequestMethod.POST)
+    @RequestMapping(value = "/mailInfoSave")
     public String mailInfoSave(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
         HttpSession session = request.getSession();
 
@@ -102,7 +102,7 @@ public class MailInfoCtr {
     /**
      * 삭제.
      */
-    @RequestMapping(value = "/mailInfoDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/mailInfoDelete")
     public String mailInfoDelete(HttpServletRequest request, MailInfoVO mailInfoVO) {
 
         mailSvc.deleteMailInfo(mailInfoVO);

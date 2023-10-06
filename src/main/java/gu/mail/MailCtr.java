@@ -36,7 +36,7 @@ public class MailCtr {
     /**
      * 리스트.
      */
-    @RequestMapping(value = "/receiveMails", method = RequestMethod.GET)
+    @RequestMapping(value = "/receiveMails")
     public String receiveMails(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
@@ -57,7 +57,7 @@ public class MailCtr {
         return "mail/ReceiveMails";
     }
     
-    @RequestMapping(value = "/sendMails", method = RequestMethod.GET)
+    @RequestMapping(value = "/sendMails")
     public String sendMails(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
@@ -81,7 +81,7 @@ public class MailCtr {
     /** 
      * 쓰기. 
      */
-    @RequestMapping(value = "/mailForm", method = RequestMethod.GET)
+    @RequestMapping(value = "/mailForm")
     public String mailForm(HttpServletRequest request, MailVO mailInfo, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
@@ -106,7 +106,7 @@ public class MailCtr {
     /**
      * 저장.
      */
-    @RequestMapping(value = "/mailSave", method = RequestMethod.POST)
+    @RequestMapping(value = "/mailSave")
     public String mailSave(HttpServletRequest request, MailVO mailInfo) {
         String userno = request.getSession().getAttribute("userno").toString();
 
@@ -121,7 +121,7 @@ public class MailCtr {
     /**
      * 읽기.
      */
-    @RequestMapping(value = "/receiveMailRead", method = RequestMethod.GET)
+    @RequestMapping(value = "/receiveMailRead")
     public String receiveMailRead(HttpServletRequest request, MailVO mailVO, ModelMap modelMap) {
     	mailRead(request, mailVO, modelMap);
         
@@ -153,14 +153,14 @@ public class MailCtr {
     /**
      * 삭제.
      */
-    @RequestMapping(value = "/receiveMailDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/receiveMailDelete")
     public String receiveMailDelete(HttpServletRequest request, MailVO mailVO) {
 
         mailSvc.deleteMail(mailVO);
         
         return "redirect:/receiveMails";
     }
-    @RequestMapping(value = "/receiveMailsDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/receiveMailsDelete")
     public String receiveMailsDelete(HttpServletRequest request, String[] checkRow) {
 
         mailSvc.deleteMails(checkRow);
@@ -168,14 +168,14 @@ public class MailCtr {
         return "redirect:/receiveMails";
     }
 
-    @RequestMapping(value = "/sendMailDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/sendMailDelete")
     public String sendMailDelete(HttpServletRequest request, MailVO mailVO) {
 
         mailSvc.deleteMail(mailVO);
         
         return "redirect:/sendMails";
     }
-    @RequestMapping(value = "/sendMailsDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/sendMailsDelete")
     public String sendMailsDelete(HttpServletRequest request, String[] checkRow) {
 
         mailSvc.deleteMails(checkRow);
@@ -185,7 +185,7 @@ public class MailCtr {
     /**
      * 
      */
-    @RequestMapping(value = "/getReceiveMail", method = RequestMethod.GET)
+    @RequestMapping(value = "/getReceiveMail")
     public String importMail(HttpServletRequest request, ModelMap modelMap) {
         HttpSession session = request.getSession();
 

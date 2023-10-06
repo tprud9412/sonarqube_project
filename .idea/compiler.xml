@@ -6,12 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+      </profile>
+      <profile name="Annotation profile for project9" enabled="true">
+        <sourceOutputDir name="${project.basedir}/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="${project.basedir}/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
         <module name="project9" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="groupware9" target="1.8" />
-      <module name="project9" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

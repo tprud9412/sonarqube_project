@@ -148,6 +148,12 @@
     </dependency>
   </dependencies>
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -197,8 +203,8 @@
   </build>
 
   <properties>
-    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
-    <sonar.login>squ_034929562df06ec6c20894e0138e8424a3b302fc</sonar.login>
+    <sonar.host.url>${sonar.host.url}</sonar.host.url>
+    <sonar.login>${sonar.login}</sonar.login>
   </properties>
 
   <distributionManagement>
@@ -208,4 +214,18 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
   </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>sonar-properties</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sonar.host.url>${sonar.host.url}</sonar.host.url>
+        <sonar.login>${sonar.login}</sonar.login>
+      </properties>
+    </profile>
+  </profiles>
+
 </project>
