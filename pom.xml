@@ -204,37 +204,10 @@
     </plugins>
   </build>
 
-  <profiles>
-    <profile>
-      <id>sonar-properties</id> <!-- 프로파일 식별자 -->
-      <properties>
-        <sonar.host.url>${host.url}</sonar.host.url>
-        <sonar.login>${login}</sonar.login>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>properties-maven-plugin</artifactId>
-            <version>1.0.0</version>
-            <executions>
-              <execution>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>read-project-properties</goal>
-                </goals>
-                <configuration>
-                  <files>
-                    <file>src/main/resources/sonar.properties</file> <!-- 외부 프로퍼티 파일 경로 지정 -->
-                  </files>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+  <properties>
+    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
+    <sonar.login>squ_034929562df06ec6c20894e0138e8424a3b302fc</sonar.login>
+  </properties>
 
   <distributionManagement>
     <repository>
