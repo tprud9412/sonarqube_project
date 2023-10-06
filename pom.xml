@@ -201,12 +201,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <properties>
-    <sonar.host.url>${sonar.host.url}</sonar.host.url>
-    <sonar.login>${sonar.login}</sonar.login>
-  </properties>
-
   <distributionManagement>
     <repository>
       <id>central</id>
