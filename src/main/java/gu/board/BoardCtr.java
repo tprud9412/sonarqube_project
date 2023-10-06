@@ -29,73 +29,73 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@Controller 
+@Controller
 public class BoardCtr {
 
     @Autowired
     private BoardSvc boardSvc;
-    
+
     @Autowired
     private BoardGroupSvc boardGroupSvc;
-    
+
     @Autowired
-    private EtcSvc etcSvc;    
-    
+    private EtcSvc etcSvc;
+
     static final Logger LOGGER = LoggerFactory.getLogger(BoardCtr.class);
-    
+
     /**
      * 리스트.
      */
-    @RequestMapping(value = "/boardList")
+    @RequestMapping(value = "/boardList", method = {RequestMethod.GET, RequestMethod.POST})
     public String boardList(HttpServletRequest request, BoardSearchVO searchVO, ModelMap modelMap) {
         String globalKeyword = request.getParameter("globalKeyword");  // it's search from left side bar
         if (globalKeyword!=null & !"".equals(globalKeyword)) {
             searchVO.setSearchKeyword(globalKeyword);
-        }        
-        
+        }
+
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         etcSvc.setCommonAttribute(userno, modelMap);
-        
+
         if (searchVO.getBgno() != null && !"".equals(searchVO.getBgno())) {
             BoardGroupVO bgInfo = boardSvc.selectBoardGroupOne4Used(searchVO.getBgno());
-            if (bgInfo == null) { 
+            if (bgInfo == null) {
                 return "board/BoardGroupFail";
             }
             modelMap.addAttribute("bgInfo", bgInfo);
         }
-        
+
         List<?> noticelist  = boardSvc.selectNoticeList(searchVO);
 
         searchVO.pageCalculate( boardSvc.selectBoardCount(searchVO) ); // startRow, endRow
         List<?> listview  = boardSvc.selectBoardList(searchVO);
-        
+
         modelMap.addAttribute("searchVO", searchVO);
         modelMap.addAttribute("listview", listview);
         modelMap.addAttribute("noticelist", noticelist);
-        
+
         if (searchVO.getBgno() == null || "".equals(searchVO.getBgno())) {
             return "board/BoardListAll";
         }
         return "board/BoardList";
     }
-    
-    /** 
-     * 글 쓰기. 
+
+    /**
+     * 글 쓰기.
      */
     @RequestMapping(value = "/boardForm", method = RequestMethod.GET)
     public String boardForm(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         etcSvc.setCommonAttribute(userno, modelMap);
-        
+
         String bgno = request.getParameter("bgno");
         String brdno = request.getParameter("brdno");
-        
+
         if (brdno != null) {
             BoardVO boardInfo = boardSvc.selectBoardOne(new Field3VO(brdno, null, null));
             List<?> listview = boardSvc.selectBoardFileList(brdno);
-        
+
             modelMap.addAttribute("boardInfo", boardInfo);
             modelMap.addAttribute("listview", listview);
             bgno = boardInfo.getBgno();
@@ -104,13 +104,13 @@ public class BoardCtr {
         if (bgInfo == null) {
             return "board/BoardGroupFail";
         }
-        
+
         modelMap.addAttribute("bgno", bgno);
         modelMap.addAttribute("bgInfo", bgInfo);
-        
+
         return "board/BoardForm";
     }
-    
+
     /**
      * 글 저장.
      */
@@ -125,7 +125,7 @@ public class BoardCtr {
                 return "common/noAuth";
             }
         }
-        
+
         String[] fileno = request.getParameterValues("fileno");
         FileUtil fs = new FileUtil();
         List<FileVO> filelist = fs.saveAllFiles(boardInfo.getUploadfile());
@@ -141,14 +141,14 @@ public class BoardCtr {
     @RequestMapping(value = "/boardRead", method = RequestMethod.GET)
     public String boardRead(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         etcSvc.setCommonAttribute(userno, modelMap);
-        
+
         String bgno = request.getParameter("bgno");
         String brdno = request.getParameter("brdno");
-        
+
         Field3VO f3 = new Field3VO(brdno, userno, null);
-        
+
         boardSvc.updateBoardRead(f3);
         BoardVO boardInfo = boardSvc.selectBoardOne(f3);
         List<?> listview = boardSvc.selectBoardFileList(brdno);
@@ -158,16 +158,16 @@ public class BoardCtr {
         if (bgInfo == null) {
             return "board/BoardGroupFail";
         }
-        
+
         modelMap.addAttribute("boardInfo", boardInfo);
         modelMap.addAttribute("listview", listview);
         modelMap.addAttribute("replylist", replylist);
         modelMap.addAttribute("bgno", bgno);
         modelMap.addAttribute("bgInfo", bgInfo);
-        
+
         return "board/BoardRead";
     }
-    
+
     /**
      * 글 삭제.
      */
@@ -184,34 +184,34 @@ public class BoardCtr {
         if (chk == null) {
             return "common/noAuth";
         }
-        
+
         boardSvc.deleteBoardOne(brdno);
-        
+
         return "redirect:/boardList?bgno=" + bgno;
     }
 
     /**
-     * 게시판 트리. Ajax용.     
+     * 게시판 트리. Ajax용.
      */
     @RequestMapping(value = "/boardListByAjax", method = RequestMethod.POST)
-        public void boardListByAjax(HttpServletResponse response, ModelMap modelMap) {
+    public void boardListByAjax(HttpServletResponse response, ModelMap modelMap) {
         List<?> listview   = boardGroupSvc.selectBoardGroupList();
 
         TreeMaker tm = new TreeMaker();
         String treeStr = tm.makeTreeByHierarchy(listview);
-        
+
         response.setContentType("application/json;charset=UTF-8");
         try {
             response.getWriter().print(treeStr);
         } catch (IOException ex) {
             LOGGER.error("boardListByAjax");
         }
-        
+
     }
-    
+
     /*===================================================================== */
     /**
-     * 좋아요 저장.     
+     * 좋아요 저장.
      */
     @RequestMapping(value = "/boardLikeAdd", method = RequestMethod.POST)
     public void addBoardLike(HttpServletRequest request, HttpServletResponse response) {
@@ -224,9 +224,9 @@ public class BoardCtr {
 
         UtilEtc.responseJsonValue(response, "OK");
     }
-        
+
     /*===================================================================== */
-    
+
     /**
      * 댓글 저장.
      */
@@ -247,14 +247,14 @@ public class BoardCtr {
         //boardReplyInfo.setRewriter(request.getSession().getAttribute("usernm").toString());
 
         modelMap.addAttribute("replyInfo", boardReplyInfo);
-        
-        return "board/BoardReadAjax4Reply";        
+
+        return "board/BoardReadAjax4Reply";
     }
-    
+
     /**
      * 댓글 삭제.
      */
-    @RequestMapping(value = "/boardReplyDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/boardReplyDelete", method = {RequestMethod.GET, RequestMethod.POST})
     public void boardReplyDelete(HttpServletRequest request, HttpServletResponse response, BoardReplyVO boardReplyInfo) {
         String userno = request.getSession().getAttribute("userno").toString();
         boardReplyInfo.setUserno(userno);
@@ -266,12 +266,12 @@ public class BoardCtr {
                 return;
             }
         }
-        
+
         if (!boardSvc.deleteBoardReply(boardReplyInfo.getReno()) ) {
             UtilEtc.responseJsonValue(response, "Fail");
         } else {
             UtilEtc.responseJsonValue(response, "OK");
         }
     }
-   
+
 }

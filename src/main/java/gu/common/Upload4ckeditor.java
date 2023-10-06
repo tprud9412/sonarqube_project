@@ -22,7 +22,7 @@ public class Upload4ckeditor {
     /**
      * ckeditor의 이미지 업로드 처리.
      */
-    @RequestMapping(value = "/upload4ckeditor", method = RequestMethod.GET)
+    @RequestMapping(value = "/upload4ckeditor", method = {RequestMethod.GET, RequestMethod.POST})
     public void upload(HttpServletResponse response, HttpServletRequest request, MultipartFile upload) {
         String callback = request.getParameter("CKEditorFuncNum");
         
