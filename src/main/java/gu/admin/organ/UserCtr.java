@@ -78,7 +78,7 @@ public class UserCtr {
      * 사용자 저장 (POST 요청).
      * 신규 사용자는 저장 전에 중복 확인.
      */
-    @RequestMapping(value = "/adUserSave", method = RequestMethod.POST)
+    @RequestMapping(value = "/adUserSave", method = {RequestMethod.GET, RequestMethod.POST})
     public String userSave(HttpServletResponse response, ModelMap modelMap, UserVO userInfo) {
 
         if (userInfo.getUserno() == null || "".equals(userInfo.getUserno())) {

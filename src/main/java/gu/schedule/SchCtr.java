@@ -139,7 +139,7 @@ public class SchCtr {
     /**
      * 삭제.
      */
-    @RequestMapping(value = "/schDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/schDelete", method = RequestMethod.POST)
     public String schDelete(HttpServletRequest request, SchVO schVO) {
 
         schSvc.deleteSch(schVO);

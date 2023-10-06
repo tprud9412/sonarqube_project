@@ -36,7 +36,7 @@ public class SignCtr {
     /**
      * 결제 받을 문서 리스트.
      */
-    @RequestMapping(value = "/signListTobe", method = RequestMethod.GET)
+    @RequestMapping(value = "/signListTobe", method = {RequestMethod.GET, RequestMethod.POST})
     public String signListTobe(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         // 페이지 공통: alert
         String userno = request.getSession().getAttribute("userno").toString();
@@ -57,7 +57,7 @@ public class SignCtr {
     /**
      * 결제 할 문서 리스트.
      */
-    @RequestMapping(value = "/signListTo", method = RequestMethod.GET)
+    @RequestMapping(value = "/signListTo", method = {RequestMethod.GET, RequestMethod.POST})
     public String signListTo(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         // 페이지 공통: alert
         String userno = request.getSession().getAttribute("userno").toString();
@@ -170,7 +170,7 @@ public class SignCtr {
 
         signSvc.deleteSignDoc(SignDocVO);
         
-        return "redirect:/signList";
+        return "redirect:/signListTobe";
     }
 
     /**

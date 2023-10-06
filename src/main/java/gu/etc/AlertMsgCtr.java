@@ -22,7 +22,7 @@ public class AlertMsgCtr {
     /**
      * alert 리스트 전체.
      */
-    @RequestMapping(value = "/alertList", method = RequestMethod.POST)
+    @RequestMapping(value = "/alertList", method = RequestMethod.GET)
        public String alertList(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         
@@ -36,7 +36,7 @@ public class AlertMsgCtr {
     /**
      * alert 리스트 Top 5.
      */
-    @RequestMapping(value = "/alertList4Ajax", method = RequestMethod.POST)
+    @RequestMapping(value = "/alertList4Ajax", method = {RequestMethod.POST, RequestMethod.GET})
     public String alertList4Ajax(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         

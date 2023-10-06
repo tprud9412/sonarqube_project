@@ -177,7 +177,6 @@
           <appName>groupware9</appName>
           <region>koreacentral</region>
           <deployment>
-            <resources/>
           </deployment>
           <appSettings>
             <property>
@@ -187,20 +186,80 @@
           </appSettings>
         </configuration>
       </plugin>
+      <!--
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/classes</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/webapp/WEB-INF</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+      <!-- sonar.properties 파일 사용시
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+          <execution>
+            <id>read-properties</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>${project.basedir}/sonar.properties</file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+
       <!-- SonarQube 플러그인 추가 -->
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.9.0.2155</version> <!-- 최신 버전을 사용하도록 업데이트하세요. -->
+        <version>3.10.0.2594</version>
       </plugin>
     </plugins>
   </build>
 
   <properties>
-    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
-    <sonar.login>squ_034929562df06ec6c20894e0138e8424a3b302fc</sonar.login>
+    <sonar.host.url>http://localhost:9000</sonar.host.url>
+    <sonar.token>squ_da48da8d5cc9b084bff15f30a3e2d6efbcfd2aab</sonar.token>
   </properties>
 
+
+  <!-- sonar.properties 파일에서 값을 가져오기 위한 변수 선언
+  <properties>
+    <sonar.config.location>${project.basedir}/sonar.properties</sonar.config.location>
+    <sonar.host.url>http://localhost:9000</sonar.host.url>
+    <my.sonar.token>${sonar.token}</my.sonar.token>
+  </properties>
+
+  <properties>
+    <sonar.url>123</sonar.url>
+    <sonar.token>squ_a67e34cbc7f8d6386e38b6d60b6408090e9c84cf</sonar.token>
+  </properties>
+  -->
   <distributionManagement>
     <repository>
       <id>central</id>
@@ -209,3 +268,5 @@
     </repository>
   </distributionManagement>
 </project>
+
+

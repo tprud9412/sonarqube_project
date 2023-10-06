@@ -106,7 +106,7 @@ public class MailCtr {
     /**
      * 저장.
      */
-    @RequestMapping(value = "/mailSave", method = RequestMethod.POST)
+    @RequestMapping(value = "/mailSave", method = {RequestMethod.POST, RequestMethod.GET})
     public String mailSave(HttpServletRequest request, MailVO mailInfo) {
         String userno = request.getSession().getAttribute("userno").toString();
 
