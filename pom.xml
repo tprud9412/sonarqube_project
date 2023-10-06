@@ -155,6 +155,7 @@
       </resource>
     </resources>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -203,11 +204,37 @@
     </plugins>
   </build>
 
-  <properties>
-    <sonar.host.url>${sonar.host.url}</sonar.host.url>
-    <sonar.login>${sonar.login}</sonar.login>
-  </properties>
-
+  <profiles>
+    <profile>
+      <id>sonar-properties</id> <!-- 프로파일 식별자 -->
+      <properties>
+        <sonar.host.url>${host.url}</sonar.host.url>
+        <sonar.login>${login}</sonar.login>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>properties-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+              <execution>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>read-project-properties</goal>
+                </goals>
+                <configuration>
+                  <files>
+                    <file>src/main/resources/sonar.properties</file> <!-- 외부 프로퍼티 파일 경로 지정 -->
+                  </files>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <distributionManagement>
     <repository>
