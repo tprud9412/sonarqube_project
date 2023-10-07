@@ -21,6 +21,11 @@ public class MemberSvc {
     public List<?> selectSearchMemberList(SearchVO param) {
         return sqlSession.selectList("selectSearchMemberList", param);
     }
+
+    //passwordCheck
+    public UserVO selectMember4PasswordCheck(UserVO param) {
+        return sqlSession.selectOne("selectMember4PasswordCheck", param);
+    }
     
     public UserVO selectMember4Login(LoginVO param) {
         return sqlSession.selectOne("selectMember4Login", param);

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 public class BoardGroupSvc {
 
     @Autowired
-    private SqlSessionTemplate sqlSession;    
-        
+    private SqlSessionTemplate sqlSession;
+
     public List<?> selectBoardGroupList() {
         return sqlSession.selectList("selectBoardGroupList");
     }
@@ -30,7 +30,7 @@ public class BoardGroupSvc {
              sqlSession.insert("updateBoardGroup", param);
         }
     }
- 
+
     public BoardGroupVO selectBoardGroupOne(String param) {
         return sqlSession.selectOne("selectBoardGroupOne", param);
     }

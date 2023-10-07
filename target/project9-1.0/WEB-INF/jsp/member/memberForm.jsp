@@ -58,11 +58,13 @@ function fn_formSubmit(){
 } 
 
 function fn_changePW() {
+    $("#currentpw").val("");
 	$("#userpw").val("");	
 	$("#userpw2").val("");	
 	$('#myModal').modal("show");
 }
 function fn_changePWSave() {
+    if ( ! chkInputValue("#currentpw", "<s:message code="common.currentPassword"/>")) return false;
 	if ( ! chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
 	if ( ! chkInputValue("#userpw2", "<s:message code="common.passwordRe"/>")) return false;
 	if ( $("#userpw").val() !== $("#userpw2").val()){
@@ -73,11 +75,17 @@ function fn_changePWSave() {
 	$.ajax({
 		url: "changePWSave",
 		type:"post", 
-		data : {userpw:$("#userpw").val()},
+		data : {
+            currentpw:$("#currentpw").val(),
+            userpw:$("#userpw").val()
+        },
 		success: function(result){
 			if (result==="OK") {
 				alert("<s:message code="msg.changeComplete"/>");
 			}
+            if (result==="NG") {
+                alert("<s:message code="msg.err.changeFail"/>");
+            }
 		}
 	})		
 	$("#myModal").modal("hide");	
@@ -149,8 +157,14 @@ function fn_changePWSave() {
     					<span aria-hidden="true">×</span>
     				</button> 
     				<h4 class="modal-title" id="mySmallModalLabel"><s:message code="common.changePassword"/></h4> 
-    			</div> 
+    			</div>
     			<div class="modal-body">
+                    <div class="row form-group">
+                        <div class="col-lg-4"><label><s:message code="common.currentPassword"/></label></div>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="currentpw" name="currentpw" maxlength="20">
+                        </div>
+                    </div>
                    	<div class="row form-group">
                     	<div class="col-lg-4"><label><s:message code="common.password"/></label></div>
                         <div class="col-sm-8">

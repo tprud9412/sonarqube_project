@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,22 +30,38 @@ public class MemberCtr {
     private MemberSvc memberSvc;
 
     /**
-     * 내정보.
+     * 비밀번호 체크 화면
      */
-    @RequestMapping(value = "/memberForm", method = RequestMethod.GET)
-    public String memberForm(HttpServletRequest request, ModelMap modelMap) {
-        String save = request.getParameter("save");
+    @RequestMapping(value = "memberPwChk", method = RequestMethod.POST)
+    public String memberLoginChk(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap, UserVO userPwChk) {
 
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
+        //check current password
+        userPwChk.setUserno(userno);
+        UserVO mdo = memberSvc.selectMember4PasswordCheck(userPwChk);
+
+        if (mdo == null) {
+            return "common/AuthenticationFailurePage";
+        }
+
+        String save = request.getParameter("save");
+
         UserVO userInfo = userSvc.selectUserOne(userno);
-        
         modelMap.addAttribute("userInfo", userInfo);
         modelMap.addAttribute("save", save);
-        
+
         return "member/memberForm";
     }
 
+    /**
+     * 내정보.
+     */
+    @RequestMapping(value = "/memberForm", method = RequestMethod.GET)
+    public String memberForm(HttpServletRequest request) {
+
+        return "member/memberCheckForm";
+    }
 
     /**
      * 사용자 저장.
@@ -63,7 +80,7 @@ public class MemberCtr {
 
         return "redirect:/memberForm?save=OK";
     }
-    
+
     /**
      * 비밀번호 변경.
      */
@@ -71,9 +88,16 @@ public class MemberCtr {
     public void changePWSave(HttpServletRequest request, HttpServletResponse response, UserVO userInfo) {
         String userno = request.getSession().getAttribute("userno").toString();
         userInfo.setUserno(userno);
-        
-        userSvc.updateUserPassword(userInfo);
 
+        //check current password
+        UserVO mdo = memberSvc.selectMember4PasswordCheck(userInfo);
+
+        if (mdo == null) {
+            UtilEtc.responseJsonValue(response,"NG");
+            return;
+        }
+
+        userSvc.updateUserPassword(userInfo);
         UtilEtc.responseJsonValue(response,"OK");
     }
 

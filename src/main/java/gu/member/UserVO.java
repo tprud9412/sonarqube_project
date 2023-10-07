@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserVO {
     private String userno;
     private String userid;
+    private String currentpw;
     private String userpw;
     private String usernm;
     private String photo;
@@ -26,6 +27,14 @@ public class UserVO {
 
     public void setUserid(String userid) {
         this.userid = userid;
+    }
+
+    public String getCurrentpw() {
+        return currentpw;
+    }
+
+    public void setCurrentpw(String currentpw) {
+        this.currentpw = currentpw;
     }
 
     public String getUserpw() {

@@ -17,7 +17,14 @@
          WHERE CU.DELETEFLAG='N' AND CD.DELETEFLAG='N'
            AND CU.USERNM LIKE CONCAT('%', #{searchKeyword},'%')
          LIMIT ${rowStart-1}, 10
-    </select> 
+    </select>
+
+    <select id="selectMember4PasswordCheck" parameterType="gu.member.UserVO" resultType="gu.member.UserVO" >
+        SELECT USERNO, USERID, USERNM, USERROLE
+          FROM COM_USER CU
+         WHERE CU.DELETEFLAG='N'
+           AND CU.USERNO = #{userno} AND USERPW=SHA2(#{currentpw}, 256)
+    </select>
 
     <select id="selectMember4Login" parameterType="gu.member.LoginVO" resultType="gu.member.UserVO" >
         SELECT USERNO, USERID, USERNM, USERROLE

@@ -119,6 +119,11 @@ public class BoardCtr {
         String userno = request.getSession().getAttribute("userno").toString();
         boardInfo.setUserno(userno);
 
+        // check auth for admin
+        if (Integer.parseInt(boardInfo.getBgno()) == 2 && !"A".equals(request.getSession().getAttribute("userrole"))) {
+            return "common/noAuth";
+        }
+
         if (boardInfo.getBrdno() != null && !"".equals(boardInfo.getBrdno())) {    // check auth for update
             String chk = boardSvc.selectBoardAuthChk(boardInfo);
             if (chk == null) {
