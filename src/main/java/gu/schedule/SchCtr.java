@@ -68,10 +68,15 @@ public class SchCtr {
         
         etcSvc.setCommonAttribute(userno, modelMap);
     	
-        // 
+        // 작성 정보가 있다면 수정, 없다면 신규
         if (schInfo.getSsno() != null) {
             schInfo = schSvc.selectSchOne(schInfo);
-        
+
+            // 권한 체크
+            if(!schInfo.getUserno().equals(userno)){
+                return "common/noAuth";
+            }
+
         } else{
         	schInfo.setSstype("1");
         	schInfo.setSsisopen("Y");
@@ -127,9 +132,12 @@ public class SchCtr {
         String userno = request.getSession().getAttribute("userno").toString();
         
         etcSvc.setCommonAttribute(userno, modelMap);
-        // 
-        
         SchVO schInfo = schSvc.selectSchOne4Read(schVO);
+
+        // 권한 체크
+        if(!schInfo.getUserno().equals(userno)){
+            return "common/noAuth";
+        }
 
         modelMap.addAttribute("schInfo", schInfo);
         
