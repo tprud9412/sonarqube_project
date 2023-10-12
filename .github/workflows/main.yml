@@ -22,7 +22,7 @@ jobs:
       - name: SonarQube Analysis
         run: |
           mvn clean install -B -V
-          mvn sonar:sonar -Dsonar.login=$SONAR_LOGIN -Dsonar.host.url=$SONAR_HOST_URL
+          mvn sonar:sonar -Dsonar.login=${{ secrets.SONAR_LOGIN }}-Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
 
         env:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
