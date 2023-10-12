@@ -33,12 +33,13 @@ public class Imap {
     	a.patchMessage(null);
 
     	int cnt = 0;
+		boolean shouldBreak = false;
 
-    	while (cnt < a.msgs.length) {
+    	while (cnt < a.msgs.length && !shouldBreak) {
         	ArrayList<MailVO> msgList = a.getMail(0);
         	cnt += msgList.size();
 	    	System.out.println(cnt);
-	    	break;
+			shouldBreak = true;
     	}
     	a.disconnect();
     }
