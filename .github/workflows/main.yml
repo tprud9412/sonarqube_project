@@ -20,8 +20,8 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven, SonarQube Analysis
-        run: mvn clean verify sonar:sonar -Dsonar.host.url=${{secrets.SONAR_HOST_URL}} -Dsonar.login=${{secrets.SONAR_LOGIN}}
+        run: mvn clean verify sonar:sonar -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_LOGIN }}
 
         env:
-          SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}}
-          SONAR_LOGIN: ${{secrets.SONAR_LOGIN}}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
