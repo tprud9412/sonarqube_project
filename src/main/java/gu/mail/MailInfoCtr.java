@@ -18,60 +18,90 @@ import gu.etc.EtcSvc;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller 
+@Controller
 public class MailInfoCtr {
 
     @Autowired
     private MailSvc mailSvc;
-    
+
     @Autowired
-    private EtcSvc etcSvc; 
-    
+    private EtcSvc etcSvc;
+
     static final Logger LOGGER = LoggerFactory.getLogger(MailInfoCtr.class);
-    
+
     /**
      * 리스트.
      */
-    @RequestMapping(value = "/mailInfoList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mailInfoList(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
+    @RequestMapping(value = "/mailInfoList", method = RequestMethod.GET)
+    public String mailInfoList_get(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         // 페이지 공통: alert
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         etcSvc.setCommonAttribute(userno, modelMap);
-    	
+
         List<?> listview  = mailSvc.selectMailInfoList(userno);
-        
+
         modelMap.addAttribute("searchVO", searchVO);
         modelMap.addAttribute("listview", listview);
-        
+
         return "mail/MailInfoList";
     }
-    
-    /** 
-     * 쓰기. 
-     */
-    @RequestMapping(value = "/mailInfoForm", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mailInfoForm(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
+    @RequestMapping(value = "/mailInfoList", method = RequestMethod.POST)
+    public String mailInfoList_post(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         // 페이지 공통: alert
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         etcSvc.setCommonAttribute(userno, modelMap);
-    	
-        // 
+
+        List<?> listview  = mailSvc.selectMailInfoList(userno);
+
+        modelMap.addAttribute("searchVO", searchVO);
+        modelMap.addAttribute("listview", listview);
+
+        return "mail/MailInfoList";
+    }
+
+    /**
+     * 쓰기.
+     */
+    @RequestMapping(value = "/mailInfoForm", method = RequestMethod.GET)
+    public String mailInfoForm_get(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
+        // 페이지 공통: alert
+        String userno = request.getSession().getAttribute("userno").toString();
+
+        etcSvc.setCommonAttribute(userno, modelMap);
+
+        //
         if (mailInfoInfo.getEmino() != null) {
             mailInfoInfo = mailSvc.selectMailInfoOne(mailInfoInfo);
-        
+
             modelMap.addAttribute("mailInfoInfo", mailInfoInfo);
         }
-        
+
         return "mail/MailInfoForm";
     }
-    
+    @RequestMapping(value = "/mailInfoForm", method = RequestMethod.POST)
+    public String mailInfoForm_post(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
+        // 페이지 공통: alert
+        String userno = request.getSession().getAttribute("userno").toString();
+
+        etcSvc.setCommonAttribute(userno, modelMap);
+
+        //
+        if (mailInfoInfo.getEmino() != null) {
+            mailInfoInfo = mailSvc.selectMailInfoOne(mailInfoInfo);
+
+            modelMap.addAttribute("mailInfoInfo", mailInfoInfo);
+        }
+
+        return "mail/MailInfoForm";
+    }
+
     /**
      * 저장.
      */
-    @RequestMapping(value = "/mailInfoSave", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mailInfoSave(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
+    @RequestMapping(value = "/mailInfoSave", method = RequestMethod.GET)
+    public String mailInfoSave_get(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
         HttpSession session = request.getSession();
 
         if ( session.getAttribute("mail")!=null) {
@@ -80,34 +110,69 @@ public class MailInfoCtr {
         }
 
         String userno = request.getSession().getAttribute("userno").toString();
-    	mailInfoInfo.setUserno(userno);
-    	
+        mailInfoInfo.setUserno(userno);
+
         try {
-        	Imap mail = new Imap();
-    	 	mail.connect(mailInfoInfo.getEmiimap(), mailInfoInfo.getEmiuser(), mailInfoInfo.getEmipw());
-    	 	mail.disconnect();
+            Imap mail = new Imap();
+            mail.connect(mailInfoInfo.getEmiimap(), mailInfoInfo.getEmiuser(), mailInfoInfo.getEmipw());
+            mail.disconnect();
         }catch(Exception e) {
             modelMap.addAttribute("msg", "서버에 접속할 수 없습니다.");
             return "common/message";
         }
-        
+
         mailSvc.insertMailInfo(mailInfoInfo);
 
         Thread t = new Thread(new ImportMail(mailSvc, userno, session) );
         t.start();
-        
+
+        return "redirect:/mailInfoList";
+    }
+    @RequestMapping(value = "/mailInfoSave", method = RequestMethod.POST)
+    public String mailInfoSave_post(HttpServletRequest request, MailInfoVO mailInfoInfo, ModelMap modelMap) {
+        HttpSession session = request.getSession();
+
+        if ( session.getAttribute("mail")!=null) {
+            modelMap.addAttribute("msg", "이전에 등록한 메일 서버에서 메일을 가지고 오는 중입니다. \n 잠시 뒤에 다시 등록해 주세요.");
+            return "common/message";
+        }
+
+        String userno = request.getSession().getAttribute("userno").toString();
+        mailInfoInfo.setUserno(userno);
+
+        try {
+            Imap mail = new Imap();
+            mail.connect(mailInfoInfo.getEmiimap(), mailInfoInfo.getEmiuser(), mailInfoInfo.getEmipw());
+            mail.disconnect();
+        }catch(Exception e) {
+            modelMap.addAttribute("msg", "서버에 접속할 수 없습니다.");
+            return "common/message";
+        }
+
+        mailSvc.insertMailInfo(mailInfoInfo);
+
+        Thread t = new Thread(new ImportMail(mailSvc, userno, session) );
+        t.start();
+
         return "redirect:/mailInfoList";
     }
 
     /**
      * 삭제.
      */
-    @RequestMapping(value = "/mailInfoDelete", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mailInfoDelete(HttpServletRequest request, MailInfoVO mailInfoVO) {
+    @RequestMapping(value = "/mailInfoDelete", method = RequestMethod.GET)
+    public String mailInfoDelete_get(HttpServletRequest request, MailInfoVO mailInfoVO) {
 
         mailSvc.deleteMailInfo(mailInfoVO);
-        
+
         return "redirect:/mailInfoList";
     }
-   
+    @RequestMapping(value = "/mailInfoDelete", method = RequestMethod.POST)
+    public String mailInfoDelete_post(HttpServletRequest request, MailInfoVO mailInfoVO) {
+
+        mailSvc.deleteMailInfo(mailInfoVO);
+
+        return "redirect:/mailInfoList";
+    }
+
 }

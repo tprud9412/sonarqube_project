@@ -22,97 +22,169 @@ import gu.etc.EtcSvc;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller 
+@Controller
 public class MailCtr {
 
     @Autowired
     private MailSvc mailSvc;
-    
+
     @Autowired
-    private EtcSvc etcSvc; 
-    
+    private EtcSvc etcSvc;
+
     static final Logger LOGGER = LoggerFactory.getLogger(MailCtr.class);
 
     /**
      * 리스트.
      */
-    @RequestMapping(value = "/receiveMails", method = {RequestMethod.GET, RequestMethod.POST})
-    public String receiveMails(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
+    @RequestMapping(value = "/receiveMails", method = RequestMethod.GET)
+    public String receiveMails_get(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
-    	if (mailInfoList.size()==0) return "mail/MailInfoGuide";
-    	
+        if (mailInfoList.size()==0) return "mail/MailInfoGuide";
+
         // 페이지 공통: alert
         Integer alertcount = etcSvc.selectAlertCount(userno);
         modelMap.addAttribute("alertcount", alertcount);
-    	
-        // 
+
+        //
         searchVO.setSearchExt1("R");
         searchVO.pageCalculate( mailSvc.selectReceiveMailCount(searchVO) ); // startRow, endRow
         List<?> listview  = mailSvc.selectReceiveMailList(searchVO);
-        
+
         modelMap.addAttribute("searchVO", searchVO);
         modelMap.addAttribute("listview", listview);
-        
+
         return "mail/ReceiveMails";
     }
-    
-    @RequestMapping(value = "/sendMails", method = {RequestMethod.GET, RequestMethod.POST})
-    public String sendMails(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
+    @RequestMapping(value = "/receiveMails", method = RequestMethod.POST)
+    public String receiveMails_post(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
         List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
-    	if (mailInfoList.size()==0) return "mail/MailInfoGuide";
+        if (mailInfoList.size()==0) return "mail/MailInfoGuide";
 
-    	// 페이지 공통: alert
-        Integer alertcount = etcSvc.selectAlertCount(userno);
-        modelMap.addAttribute("alertcount", alertcount);
-    	
-        // 
-        searchVO.setSearchExt1("S");
-        searchVO.pageCalculate( mailSvc.selectReceiveMailCount(searchVO) ); // startRow, endRow
-        List<?> listview  = mailSvc.selectReceiveMailList(searchVO);
-        
-        modelMap.addAttribute("searchVO", searchVO);
-        modelMap.addAttribute("listview", listview);
-        
-        return "mail/SendMails";
-    }
-    
-    /** 
-     * 쓰기. 
-     */
-    @RequestMapping(value = "/mailForm", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mailForm(HttpServletRequest request, MailVO mailInfo, ModelMap modelMap) {
-        String userno = request.getSession().getAttribute("userno").toString();
-        List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
-    	if (mailInfoList.size()==0) return "mail/MailInfoGuide";
-        
         // 페이지 공통: alert
         Integer alertcount = etcSvc.selectAlertCount(userno);
         modelMap.addAttribute("alertcount", alertcount);
-    	
-        // 
+
+        //
+        searchVO.setSearchExt1("R");
+        searchVO.pageCalculate( mailSvc.selectReceiveMailCount(searchVO) ); // startRow, endRow
+        List<?> listview  = mailSvc.selectReceiveMailList(searchVO);
+
+        modelMap.addAttribute("searchVO", searchVO);
+        modelMap.addAttribute("listview", listview);
+
+        return "mail/ReceiveMails";
+    }
+
+    @RequestMapping(value = "/sendMails", method = RequestMethod.GET)
+    public String sendMails_get(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
+        String userno = request.getSession().getAttribute("userno").toString();
+        List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
+        if (mailInfoList.size()==0) return "mail/MailInfoGuide";
+
+        // 페이지 공통: alert
+        Integer alertcount = etcSvc.selectAlertCount(userno);
+        modelMap.addAttribute("alertcount", alertcount);
+
+        //
+        searchVO.setSearchExt1("S");
+        searchVO.pageCalculate( mailSvc.selectReceiveMailCount(searchVO) ); // startRow, endRow
+        List<?> listview  = mailSvc.selectReceiveMailList(searchVO);
+
+        modelMap.addAttribute("searchVO", searchVO);
+        modelMap.addAttribute("listview", listview);
+
+        return "mail/SendMails";
+    }
+    @RequestMapping(value = "/sendMails", method = RequestMethod.POST)
+    public String sendMails_post(HttpServletRequest request, SearchVO searchVO, ModelMap modelMap) {
+        String userno = request.getSession().getAttribute("userno").toString();
+        List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
+        if (mailInfoList.size()==0) return "mail/MailInfoGuide";
+
+        // 페이지 공통: alert
+        Integer alertcount = etcSvc.selectAlertCount(userno);
+        modelMap.addAttribute("alertcount", alertcount);
+
+        //
+        searchVO.setSearchExt1("S");
+        searchVO.pageCalculate( mailSvc.selectReceiveMailCount(searchVO) ); // startRow, endRow
+        List<?> listview  = mailSvc.selectReceiveMailList(searchVO);
+
+        modelMap.addAttribute("searchVO", searchVO);
+        modelMap.addAttribute("listview", listview);
+
+        return "mail/SendMails";
+    }
+
+    /**
+     * 쓰기.
+     */
+    @RequestMapping(value = "/mailForm", method = RequestMethod.GET)
+    public String mailForm_get(HttpServletRequest request, MailVO mailInfo, ModelMap modelMap) {
+        String userno = request.getSession().getAttribute("userno").toString();
+        List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
+        if (mailInfoList.size()==0) return "mail/MailInfoGuide";
+
+        // 페이지 공통: alert
+        Integer alertcount = etcSvc.selectAlertCount(userno);
+        modelMap.addAttribute("alertcount", alertcount);
+
+        //
         modelMap.addAttribute("mailInfoList", mailInfoList);
-        
+
         if (mailInfo.getEmno() != null) {
             mailInfo = mailSvc.selectReceiveMailOne(mailInfo);
-        
+
             modelMap.addAttribute("mailInfo", mailInfo);
         }
-        
+
         return "mail/MailForm";
     }
-    
+    @RequestMapping(value = "/mailForm", method = RequestMethod.POST)
+    public String mailForm_post(HttpServletRequest request, MailVO mailInfo, ModelMap modelMap) {
+        String userno = request.getSession().getAttribute("userno").toString();
+        List<?> mailInfoList = mailSvc.selectMailInfoList(userno);
+        if (mailInfoList.size()==0) return "mail/MailInfoGuide";
+
+        // 페이지 공통: alert
+        Integer alertcount = etcSvc.selectAlertCount(userno);
+        modelMap.addAttribute("alertcount", alertcount);
+
+        //
+        modelMap.addAttribute("mailInfoList", mailInfoList);
+
+        if (mailInfo.getEmno() != null) {
+            mailInfo = mailSvc.selectReceiveMailOne(mailInfo);
+
+            modelMap.addAttribute("mailInfo", mailInfo);
+        }
+
+        return "mail/MailForm";
+    }
+
     /**
      * 저장.
      */
-    @RequestMapping(value = "/mailSave", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mailSave(HttpServletRequest request, MailVO mailInfo) {
+    @RequestMapping(value = "/mailSave", method = RequestMethod.GET)
+    public String mailSave_get(HttpServletRequest request, MailVO mailInfo) {
         String userno = request.getSession().getAttribute("userno").toString();
 
-    	mailInfo.setUserno(userno);
-    	mailInfo.setEmtype("S");
-    	
+        mailInfo.setUserno(userno);
+        mailInfo.setEmtype("S");
+
+        mailSvc.insertMail(mailInfo);
+
+        return "redirect:/sendMails";
+    }
+    @RequestMapping(value = "/mailSave", method = RequestMethod.POST)
+    public String mailSave_post(HttpServletRequest request, MailVO mailInfo) {
+        String userno = request.getSession().getAttribute("userno").toString();
+
+        mailInfo.setUserno(userno);
+        mailInfo.setEmtype("S");
+
         mailSvc.insertMail(mailInfo);
 
         return "redirect:/sendMails";
@@ -121,84 +193,135 @@ public class MailCtr {
     /**
      * 읽기.
      */
-    @RequestMapping(value = "/receiveMailRead", method = {RequestMethod.GET, RequestMethod.POST})
-    public String receiveMailRead(HttpServletRequest request, MailVO mailVO, ModelMap modelMap) {
-    	mailRead(request, mailVO, modelMap);
-        
+    @RequestMapping(value = "/receiveMailRead", method = RequestMethod.GET)
+    public String receiveMailRead_get(HttpServletRequest request, MailVO mailVO, ModelMap modelMap) {
+        mailRead(request, mailVO, modelMap);
+
         return "mail/ReceiveMailRead";
     }
-    
+    @RequestMapping(value = "/receiveMailRead", method = RequestMethod.POST)
+    public String receiveMailRead_post(HttpServletRequest request, MailVO mailVO, ModelMap modelMap) {
+        mailRead(request, mailVO, modelMap);
+
+        return "mail/ReceiveMailRead";
+    }
+
     @RequestMapping(value = "/sendMailRead", method = RequestMethod.GET)
     public String sendMailRead(HttpServletRequest request, MailVO mailVO, ModelMap modelMap) {
-    	
-    	mailRead(request, mailVO, modelMap);
-    	
+
+        mailRead(request, mailVO, modelMap);
+
         return "mail/SendMailRead";
     }
-    
+
     private void mailRead(HttpServletRequest request, MailVO mailVO, ModelMap modelMap) {
         // 페이지 공통: alert
-    	String userno = request.getSession().getAttribute("userno").toString();
-        
+        String userno = request.getSession().getAttribute("userno").toString();
+
         Integer alertcount = etcSvc.selectAlertCount(userno);
         modelMap.addAttribute("alertcount", alertcount);
-    	
-        // 
-        
+
+        //
+
         MailVO mailInfo = mailSvc.selectReceiveMailOne(mailVO);
 
         modelMap.addAttribute("mailInfo", mailInfo);
     }
-    
+
     /**
      * 삭제.
      */
-    @RequestMapping(value = "/receiveMailDelete", method = {RequestMethod.GET, RequestMethod.POST})
-    public String receiveMailDelete(HttpServletRequest request, MailVO mailVO) {
+    @RequestMapping(value = "/receiveMailDelete", method = RequestMethod.GET)
+    public String receiveMailDelete_get(HttpServletRequest request, MailVO mailVO) {
 
         mailSvc.deleteMail(mailVO);
-        
+
         return "redirect:/receiveMails";
     }
-    @RequestMapping(value = "/receiveMailsDelete", method = {RequestMethod.GET, RequestMethod.POST})
-    public String receiveMailsDelete(HttpServletRequest request, String[] checkRow) {
+    @RequestMapping(value = "/receiveMailDelete", method = RequestMethod.POST)
+    public String receiveMailDelete_post(HttpServletRequest request, MailVO mailVO) {
+
+        mailSvc.deleteMail(mailVO);
+
+        return "redirect:/receiveMails";
+    }
+
+    @RequestMapping(value = "/receiveMailsDelete", method = RequestMethod.GET)
+    public String receiveMailsDelete_get(HttpServletRequest request, String[] checkRow) {
 
         mailSvc.deleteMails(checkRow);
-        
+
+        return "redirect:/receiveMails";
+    }
+    @RequestMapping(value = "/receiveMailsDelete", method = RequestMethod.POST)
+    public String receiveMailsDelete_post(HttpServletRequest request, String[] checkRow) {
+
+        mailSvc.deleteMails(checkRow);
+
         return "redirect:/receiveMails";
     }
 
-    @RequestMapping(value = "/sendMailDelete", method = {RequestMethod.GET, RequestMethod.POST})
-    public String sendMailDelete(HttpServletRequest request, MailVO mailVO) {
+    @RequestMapping(value = "/sendMailDelete", method = RequestMethod.GET)
+    public String sendMailDelete_get(HttpServletRequest request, MailVO mailVO) {
 
         mailSvc.deleteMail(mailVO);
-        
+
         return "redirect:/sendMails";
     }
-    @RequestMapping(value = "/sendMailsDelete", method = {RequestMethod.GET, RequestMethod.POST})
-    public String sendMailsDelete(HttpServletRequest request, String[] checkRow) {
+    @RequestMapping(value = "/sendMailDelete", method = RequestMethod.POST)
+    public String sendMailDelete_post(HttpServletRequest request, MailVO mailVO) {
+
+        mailSvc.deleteMail(mailVO);
+
+        return "redirect:/sendMails";
+    }
+
+    @RequestMapping(value = "/sendMailsDelete", method = RequestMethod.GET)
+    public String sendMailsDelete_get(HttpServletRequest request, String[] checkRow) {
 
         mailSvc.deleteMails(checkRow);
-        
+
+        return "redirect:/sendMails";
+    }
+    @RequestMapping(value = "/sendMailsDelete", method = RequestMethod.POST)
+    public String sendMailsDelete_post(HttpServletRequest request, String[] checkRow) {
+
+        mailSvc.deleteMails(checkRow);
+
         return "redirect:/sendMails";
     }
     /**
-     * 
+     *
      */
-    @RequestMapping(value = "/getReceiveMail", method = {RequestMethod.GET, RequestMethod.POST})
-    public String importMail(HttpServletRequest request, ModelMap modelMap) {
+    @RequestMapping(value = "/getReceiveMail", method = RequestMethod.GET)
+    public String importMail_get(HttpServletRequest request, ModelMap modelMap) {
         HttpSession session = request.getSession();
 
         if ( session.getAttribute("mail")!=null)return "";
 
         session.setAttribute("mail", "ing");
 
-    	String userno = session.getAttribute("userno").toString();
+        String userno = session.getAttribute("userno").toString();
 
         Thread t = new Thread(new ImportMail(mailSvc, userno, session) );
         t.start();
 
-	    return "";
+        return "";
     }
-     
+    @RequestMapping(value = "/getReceiveMail", method = RequestMethod.POST)
+    public String importMail_post(HttpServletRequest request, ModelMap modelMap) {
+        HttpSession session = request.getSession();
+
+        if ( session.getAttribute("mail")!=null)return "";
+
+        session.setAttribute("mail", "ing");
+
+        String userno = session.getAttribute("userno").toString();
+
+        Thread t = new Thread(new ImportMail(mailSvc, userno, session) );
+        t.start();
+
+        return "";
+    }
+
 }

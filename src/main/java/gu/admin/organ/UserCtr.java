@@ -78,8 +78,26 @@ public class UserCtr {
      * 사용자 저장 (POST 요청).
      * 신규 사용자는 저장 전에 중복 확인.
      */
-    @RequestMapping(value = "/adUserSave", method = {RequestMethod.GET, RequestMethod.POST})
-    public String userSave(HttpServletResponse response, ModelMap modelMap, UserVO userInfo) {
+    @RequestMapping(value = "/adUserSave", method = RequestMethod.GET)
+    public String userSave_get(HttpServletResponse response, ModelMap modelMap, UserVO userInfo) {
+
+        if (userInfo.getUserno() == null || "".equals(userInfo.getUserno())) {
+            String userid = userSvc.selectUserID(userInfo.getUserid());
+            if (userid != null) {
+                return "common/blank";
+            }
+        }
+        FileUtil fs = new FileUtil();
+        FileVO fileInfo = fs.saveFile(userInfo.getPhotofile());
+        if (fileInfo != null) {
+            userInfo.setPhoto(fileInfo.getRealname());
+        }
+        userSvc.insertUser(userInfo);
+
+        return common_UserList(modelMap, userInfo.getDeptno());
+    }
+    @RequestMapping(value = "/adUserSave", method = RequestMethod.POST)
+    public String userSave_post(HttpServletResponse response, ModelMap modelMap, UserVO userInfo) {
 
         if (userInfo.getUserno() == null || "".equals(userInfo.getUserno())) {
             String userid = userSvc.selectUserID(userInfo.getUserid());

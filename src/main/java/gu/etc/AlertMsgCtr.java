@@ -18,33 +18,44 @@ public class AlertMsgCtr {
 
     @Autowired
     private EtcSvc etcSvc;
-    
+
     /**
      * alert 리스트 전체.
      */
     @RequestMapping(value = "/alertList", method = RequestMethod.GET)
-       public String alertList(HttpServletRequest request, ModelMap modelMap) {
+    public String alertList(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         List<?> listview   = etcSvc.selectAlertList(userno);
 
         modelMap.addAttribute("listview", listview);
-        
+
         return "etc/alertList";
     }
 
     /**
      * alert 리스트 Top 5.
      */
-    @RequestMapping(value = "/alertList4Ajax", method = {RequestMethod.POST, RequestMethod.GET})
-    public String alertList4Ajax(HttpServletRequest request, ModelMap modelMap) {
+    @RequestMapping(value = "/alertList4Ajax", method = RequestMethod.GET)
+    public String alertList4Ajax_get(HttpServletRequest request, ModelMap modelMap) {
         String userno = request.getSession().getAttribute("userno").toString();
-        
+
         List<?> listview   = etcSvc.selectAlertList4Ajax(userno);
 
         modelMap.addAttribute("listview", listview);
-        
+
         return "etc/alertList4Ajax";
     }
-    
+
+    @RequestMapping(value = "/alertList4Ajax", method = RequestMethod.POST)
+    public String alertList4Ajax_post(HttpServletRequest request, ModelMap modelMap) {
+        String userno = request.getSession().getAttribute("userno").toString();
+
+        List<?> listview   = etcSvc.selectAlertList4Ajax(userno);
+
+        modelMap.addAttribute("listview", listview);
+
+        return "etc/alertList4Ajax";
+    }
+
 }

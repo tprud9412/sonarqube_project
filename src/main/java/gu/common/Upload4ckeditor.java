@@ -22,27 +22,49 @@ public class Upload4ckeditor {
     /**
      * ckeditor의 이미지 업로드 처리.
      */
-    @RequestMapping(value = "/upload4ckeditor", method = {RequestMethod.GET, RequestMethod.POST})
-    public void upload(HttpServletResponse response, HttpServletRequest request, MultipartFile upload) {
+    @RequestMapping(value = "/upload4ckeditor", method = RequestMethod.GET)
+    public void upload_get(HttpServletResponse response, HttpServletRequest request, MultipartFile upload) {
         String callback = request.getParameter("CKEditorFuncNum");
-        
+
         String filePath = LocaleMessage.getMessage("info.filePath");
         String newName = FileUtil.getNewName();
-            
+
         FileUtil.saveFileOne(upload, filePath + "/" + newName.substring(0,4) + "/", newName);
 
         String url = request.getRequestURL().toString();
         Integer inx = url.lastIndexOf("/");
         url = url.substring(0, inx);
         url = url + "/fileDownload?downname=" + newName;
-        
+
         url = "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + url + "','upload completed!')</script>";
-        
-        try { 
+
+        try {
             response.getWriter().write(url);
         } catch (IOException ex) {
             LOGGER.error("Error: upload4ckeditor");
         }
     }
-    
+    @RequestMapping(value = "/upload4ckeditor", method = RequestMethod.POST)
+    public void upload_post(HttpServletResponse response, HttpServletRequest request, MultipartFile upload) {
+        String callback = request.getParameter("CKEditorFuncNum");
+
+        String filePath = LocaleMessage.getMessage("info.filePath");
+        String newName = FileUtil.getNewName();
+
+        FileUtil.saveFileOne(upload, filePath + "/" + newName.substring(0,4) + "/", newName);
+
+        String url = request.getRequestURL().toString();
+        Integer inx = url.lastIndexOf("/");
+        url = url.substring(0, inx);
+        url = url + "/fileDownload?downname=" + newName;
+
+        url = "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + url + "','upload completed!')</script>";
+
+        try {
+            response.getWriter().write(url);
+        } catch (IOException ex) {
+            LOGGER.error("Error: upload4ckeditor");
+        }
+    }
+
 }

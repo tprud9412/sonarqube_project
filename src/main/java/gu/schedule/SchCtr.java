@@ -135,7 +135,7 @@ public class SchCtr {
         SchVO schInfo = schSvc.selectSchOne4Read(schVO);
 
         // 권한 체크
-        if(!schInfo.getUserno().equals(userno)){
+        if(schInfo.getSsisopen().equals("N") && !schInfo.getUserno().equals(userno)){
             return "common/noAuth";
         }
 

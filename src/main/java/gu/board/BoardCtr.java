@@ -46,8 +46,41 @@ public class BoardCtr {
     /**
      * 리스트.
      */
-    @RequestMapping(value = "/boardList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String boardList(HttpServletRequest request, BoardSearchVO searchVO, ModelMap modelMap) {
+    @RequestMapping(value = "/boardList", method = RequestMethod.GET)
+    public String boardList_get(HttpServletRequest request, BoardSearchVO searchVO, ModelMap modelMap) {
+        String globalKeyword = request.getParameter("globalKeyword");  // it's search from left side bar
+        if (globalKeyword!=null & !"".equals(globalKeyword)) {
+            searchVO.setSearchKeyword(globalKeyword);
+        }
+
+        String userno = request.getSession().getAttribute("userno").toString();
+
+        etcSvc.setCommonAttribute(userno, modelMap);
+
+        if (searchVO.getBgno() != null && !"".equals(searchVO.getBgno())) {
+            BoardGroupVO bgInfo = boardSvc.selectBoardGroupOne4Used(searchVO.getBgno());
+            if (bgInfo == null) {
+                return "board/BoardGroupFail";
+            }
+            modelMap.addAttribute("bgInfo", bgInfo);
+        }
+
+        List<?> noticelist  = boardSvc.selectNoticeList(searchVO);
+
+        searchVO.pageCalculate( boardSvc.selectBoardCount(searchVO) ); // startRow, endRow
+        List<?> listview  = boardSvc.selectBoardList(searchVO);
+
+        modelMap.addAttribute("searchVO", searchVO);
+        modelMap.addAttribute("listview", listview);
+        modelMap.addAttribute("noticelist", noticelist);
+
+        if (searchVO.getBgno() == null || "".equals(searchVO.getBgno())) {
+            return "board/BoardListAll";
+        }
+        return "board/BoardList";
+    }
+    @RequestMapping(value = "/boardList", method = RequestMethod.POST)
+    public String boardList_post(HttpServletRequest request, BoardSearchVO searchVO, ModelMap modelMap) {
         String globalKeyword = request.getParameter("globalKeyword");  // it's search from left side bar
         if (globalKeyword!=null & !"".equals(globalKeyword)) {
             searchVO.setSearchKeyword(globalKeyword);
@@ -259,8 +292,27 @@ public class BoardCtr {
     /**
      * 댓글 삭제.
      */
-    @RequestMapping(value = "/boardReplyDelete", method = {RequestMethod.GET, RequestMethod.POST})
-    public void boardReplyDelete(HttpServletRequest request, HttpServletResponse response, BoardReplyVO boardReplyInfo) {
+    @RequestMapping(value = "/boardReplyDelete", method = RequestMethod.GET)
+    public void boardReplyDelete_get(HttpServletRequest request, HttpServletResponse response, BoardReplyVO boardReplyInfo) {
+        String userno = request.getSession().getAttribute("userno").toString();
+        boardReplyInfo.setUserno(userno);
+
+        if (boardReplyInfo.getReno() != null && !"".equals(boardReplyInfo.getReno())) {    // check auth for update
+            String chk = boardSvc.selectBoardReplyAuthChk(boardReplyInfo);
+            if (chk == null) {
+                UtilEtc.responseJsonValue(response, "FailAuth");
+                return;
+            }
+        }
+
+        if (!boardSvc.deleteBoardReply(boardReplyInfo.getReno()) ) {
+            UtilEtc.responseJsonValue(response, "Fail");
+        } else {
+            UtilEtc.responseJsonValue(response, "OK");
+        }
+    }
+    @RequestMapping(value = "/boardReplyDelete", method = RequestMethod.POST)
+    public void boardReplyDelete_post(HttpServletRequest request, HttpServletResponse response, BoardReplyVO boardReplyInfo) {
         String userno = request.getSession().getAttribute("userno").toString();
         boardReplyInfo.setUserno(userno);
 
