@@ -175,38 +175,15 @@
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>azure-webapp-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <configuration>
-          <schemaVersion>v2</schemaVersion>
-          <resourceGroup>SegyeongResourceGroup</resourceGroup>
-          <appName>groupware9</appName>
-          <region>koreacentral</region>
-          <deployment>
-          </deployment>
-          <appSettings>
-            <property>
-              <name>JAVA_OPTS</name>
-              <value>-Dserver.port=80 -Dspring.profiles.active=run</value>
-            </property>
-          </appSettings>
-        </configuration>
-      </plugin>
 
       <!-- SonarQube 플러그인 추가 -->
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.10.0.2594</version> <!-- 최신 버전을 사용하도록 업데이트하세요. -->
+        <version>3.9.0.2155</version> <!-- 최신 버전을 사용하도록 업데이트하세요. -->
       </plugin>
     </plugins>
   </build>
-
-  <properties>
-    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
-  </properties>
 
   <distributionManagement>
     <repository>
