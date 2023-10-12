@@ -52,6 +52,7 @@ function fn_formSubmit(){
                     <div class="panel-body">
                         <form role="form" action="memberLoginChk" method="post" id="form1" name="form1">
                             <fieldset>
+                                <legend>로그인</legend>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="ID" name="userid" id="userid" type="email" autofocus value="<c:out value="${userid}"/>">
                                 </div>

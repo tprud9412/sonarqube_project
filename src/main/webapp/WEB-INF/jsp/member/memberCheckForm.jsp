@@ -52,6 +52,7 @@
                 <div class="panel-body">
                     <form role="form" action="memberPwChk" method="post" id="form1" name="form1">
                         <fieldset>
+                            <legend>비밀번호 확인</legend>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="currentpw" id="currentpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
                             </div>
