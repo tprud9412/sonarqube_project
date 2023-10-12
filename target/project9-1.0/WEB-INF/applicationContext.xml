@@ -17,17 +17,34 @@
     p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://localhost/groupware9"   
 	p:driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" p:url="jdbc:log4jdbc:mysql://localhost/groupware9"
 	-->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-		  p:driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" p:url="jdbc:log4jdbc:mysql://localhost/groupware9?useUnicode=true&amp;characterEncoding=UTF-8"
-          p:username="root" p:password="sk002760"
-          p:initialSize="2"
-          p:maxActive="30"
-          p:maxIdle="10"
-          p:minIdle="3"
-          p:maxWait="30000"
-          p:removeAbandoned="true"
-          p:removeAbandonedTimeout="30"
-          p:validationQuery="SELECT 1" />
+<!--	<context:property-placeholder location="classpath:database.properties" />-->
+
+<!--	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+<!--		  p:driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" p:url="jdbc:log4jdbc:mysql://localhost/groupware9?useUnicode=true&amp;characterEncoding=UTF-8"-->
+<!--          p:username="root" p:password="sk002760"-->
+<!--          p:initialSize="2"-->
+<!--          p:maxActive="30"-->
+<!--          p:maxIdle="10"-->
+<!--          p:minIdle="3"-->
+<!--          p:maxWait="30000"-->
+<!--          p:removeAbandoned="true"-->
+<!--          p:removeAbandonedTimeout="30"-->
+<!--          p:validationQuery="SELECT 1" />-->
+
+	<context:property-placeholder location="classpath:database.properties"/>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+		  p:driverClassName="${database.driverClassName}" p:url="${database.url}"
+		  p:username="${database.username}" p:password="${database.password}"
+		  p:initialSize="2"
+		  p:maxActive="30"
+		  p:maxIdle="10"
+		  p:minIdle="3"
+		  p:maxWait="30000"
+		  p:removeAbandoned="true"
+		  p:removeAbandonedTimeout="30"
+		  p:validationQuery="SELECT 1"
+	/>
 
 <!--	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
 <!--		  p:driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"-->
