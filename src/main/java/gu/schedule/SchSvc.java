@@ -90,7 +90,7 @@ public class SchSvc {
 	            
 	            Integer dayofweek = Integer.parseInt(param.getSsrepeatoption()); 
 	            while (!sdate.after(edate)) {  
-	                if (Util4calen.getDayOfWeek(sdate)==dayofweek) break;
+	                if (Util4calen.getDayOfWeek(sdate).equals(dayofweek)) break;
 	            	sdate = Util4calen.dateAdd(sdate, 1);
 	            }
 	            while (!sdate.after(edate)) {  
