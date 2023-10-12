@@ -158,7 +158,7 @@ public class FileUtil {
         secureRandom.nextBytes(randomBytes);
         long randomValue = Math.abs(secureRandom.nextLong());
 
-        return ft.format(new Date());
+        return ft.format(new Date())+randomValue;
     }
     
     public String getFileExtension(String filename) {

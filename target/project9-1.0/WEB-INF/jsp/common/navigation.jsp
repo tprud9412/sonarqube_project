@@ -4,7 +4,7 @@
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index"><s:message code="common.projectTitle"/></a>
+                <a class="navbar-brand" href="index"><img src="/images/logo.png" alt="logo" style="max-width:200px" ></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>

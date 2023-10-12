@@ -109,6 +109,9 @@ public class LoginCtr {
         // HttpOnly 플래그 설정
         ck. setHttpOnly(true);
 
+        // Secure 플래그 설정
+        ck.setSecure(true);
+
         res.addCookie(ck);        
     }
 
