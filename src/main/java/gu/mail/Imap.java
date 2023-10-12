@@ -163,8 +163,10 @@ public class Imap {
 		}
 
 		Object o = p.getContent();
+
 		if (o instanceof String) {
 			mailInfo.setEmcontents((String)o);
+
 		} else if (o instanceof Multipart) {
 		    Multipart mp = (Multipart)o;
 		    int count = mp.getCount();
@@ -178,10 +180,14 @@ public class Imap {
 			String newName = FileUtil.getNewName();
 
 			File file = new File(filePath + newName);
-			OutputStream out = new FileOutputStream(file);
-		    InputStream is = (InputStream)o;
-		    int c;
-		    while ((c = is.read()) != -1) out.write(c);
+
+			try (OutputStream out = new FileOutputStream(file)) {
+				InputStream is = (InputStream) o;
+				int c;
+				while ((c = is.read()) != -1) out.write(c);
+			} catch (IOException ex) {
+				// 예외 처리 코드 작성
+			}
 
 	        FileVO filedo = new FileVO();
 	        filedo.setFilename(MimeUtility.decodeText(filename));
