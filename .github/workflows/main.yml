@@ -23,7 +23,7 @@ jobs:
         run: mvn clean install -B -V
 
       - name: SonarQube Analysis
-        run: mvn verify sonar:sonar -Dsonar.host.url=${{secrets.SONAR_HOST_URL}}
+        run: mvn sonar:sonar
 
         env:
           SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}}
