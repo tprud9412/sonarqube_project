@@ -3,6 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 	 <table class="table table-striped table-bordered table-hover">
+		 <caption>This table displays user information</caption>
 		<colgroup>
 			<col width='20%' />
 			<col width='40%' />
@@ -10,9 +11,9 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th><s:message code="board.no"/></th> 
-				<th><s:message code="common.name"/></th>
-				<th>직위</th>
+				<th scope="col"><s:message code="board.no"/></th>
+				<th scope="col"><s:message code="common.name"/></th>
+				<th scope="col">직위</th>
 			</tr>
 		</thead>
 		<tbody>

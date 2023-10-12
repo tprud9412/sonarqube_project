@@ -13,7 +13,7 @@
 					</a>
 			    </c:when>
 			    <c:otherwise>
-			    	<img class="img-circle" src="fileDownload?downname=<c:out value="${replyInfo.photo}"/>" title="<c:out value="${replyInfo.rewriter}"/>"/>
+			    	<img class="img-circle" alt="imgCircle" src="fileDownload?downname=<c:out value="${replyInfo.photo}"/>" title="<c:out value="${replyInfo.rewriter}"/>"/>
 			    </c:otherwise>
 			</c:choose>
 		</div>					

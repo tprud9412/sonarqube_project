@@ -57,7 +57,7 @@ function fn_formSubmit(){
             <div class="row">
                 <div class="col-lg-12">
 		            <button type="button" class="btn btn-default pull-right" onclick="fn_moveToURL('crudForm')">
-		            <i class="fa fa-edit fa-fw"></i> <s:message code="board.new"/></button>      
+		            <em class="fa fa-edit fa-fw"></em> <s:message code="board.new"/></button>
 				</div>
             </div>
             <!-- /.row -->
@@ -110,7 +110,7 @@ function fn_formSubmit(){
 	                                	   value='<c:out value="${searchVO.searchKeyword}"/>' >
 	                                <span class="input-group-btn">
 	                                <button class="btn btn-default" onclick="fn_formSubmit()">
-	                                    <i class="fa fa-search"></i>
+	                                    <em class="fa fa-search"></em>
 	                                </button>
 	                            </span>
 	                       </div>

@@ -258,7 +258,7 @@ function fn_addBoardLike(brdno){
 												</a>
 										    </c:when>
 										    <c:otherwise>
-										    	<img class="img-circle" src="fileDownload?downname=<c:out value="${replylist.photo}"/>" title="<c:out value="${replylist.rewriter}"/>"/>
+										    	<img class="img-circle" alt="imgCircle" src="fileDownload?downname=<c:out value="${replylist.photo}"/>" title="<c:out value="${replylist.rewriter}"/>"/>
 										    </c:otherwise>
 										</c:choose>
 									</div>					

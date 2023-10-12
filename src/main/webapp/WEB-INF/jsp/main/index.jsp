@@ -262,7 +262,7 @@ function calendarDayMouseout(){
                                                     </span>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="fileDownload?downname=<c:out value="${listtime.photo}" alt="imgCircle" />" title="<c:out value="${listtime.rewriter}"/>" class="chat-img pull-right img-circle"/>
+                                                    <img alt="imgCircle" src="fileDownload?downname=<c:out value="${listtime.photo}" />" title="<c:out value="${listtime.rewriter}"/>" class="chat-img pull-right img-circle"/>
                                                 </c:otherwise>
                                                 </c:choose>
                                                 <div class="chat-body clearfix">

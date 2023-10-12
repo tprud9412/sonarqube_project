@@ -7,7 +7,7 @@
         <li>
             <a href="boardRead?brdno=<c:out value="${listview.brdno}"/>">
                 <div>
-                    <i class="fa fa-<c:out value="${listview.extfield1}"/> fa-fw"></i> <c:out value="${listview.brdtitle}"/>
+                    <em class="fa fa-<c:out value="${listview.extfield1}"/> fa-fw"></em> <c:out value="${listview.brdtitle}"/>
                     <span class="pull-right text-muted small"><c:out value="${listview.brddate}"/></span>
                 </div>
             </a>
@@ -17,6 +17,6 @@
     <li>
         <a class="text-center" href="alertList">
             <strong>See All Alerts</strong>
-            <i class="fa fa-angle-right"></i>
+            <em class="fa fa-angle-right"></em>
         </a>
     </li>                        

@@ -154,7 +154,7 @@ function fn_showCode(id){
                 </div>
                 <div class="col-lg-1">
                     <button class="btn btn-default" type="button" onclick="fn_showCode('#popupCode4Dept')" title="코드 보기">
-                        <i class="fa fa-code"></i> 코드 보기
+                        <em class="fa fa-code"></em> 코드 보기
                     </button>
                 </div>
             </div>
@@ -170,14 +170,14 @@ function fn_showCode(id){
                         <input class="form-control" type="text" name="usernm" id="usernm" readonly="readonly">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" onclick="fn_searchUser()">
-                                <i class="fa fa-search"></i>
+                                <em class="fa fa-search"></em>
                             </button>
                         </span>
                     </div>
                 </div>
                 <div class="col-lg-1">
                     <button class="btn btn-default" type="button" onclick="fn_showCode('#popupCode4User')" title="코드 보기">
-                        <i class="fa fa-code"></i> 코드 보기
+                        <em class="fa fa-code"></em> 코드 보기
                     </button>
                 </div>                                                  
             </div>
@@ -192,14 +192,14 @@ function fn_showCode(id){
                         <input class="form-control" type="text" name="usernms" id="usernms" readonly="readonly">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" onclick="fn_searchUsers()">
-                                <i class="fa fa-search"></i> 
+                                <em class="fa fa-search"></em>
                             </button>
                         </span>
                     </div>
                 </div>
                 <div class="col-lg-1">
                     <button class="btn btn-default" type="button" onclick="fn_showCode('#popupCode4Users')" title="코드 보기">
-                        <i class="fa fa-code"></i> 코드 보기
+                        <em class="fa fa-code"></em> 코드 보기
                     </button>
                 </div>                                                  
             </div>

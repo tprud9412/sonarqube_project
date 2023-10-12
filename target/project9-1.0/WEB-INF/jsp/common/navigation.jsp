@@ -17,7 +17,7 @@
                     <c:if test="${alertcount>0}">
 		                <li class="dropdown">
 		                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="showAlertList()">
-		                        <em class="fa fa-bell fa-fw"></em>  <i class="fa fa-caret-down"></i>
+		                        <em class="fa fa-bell fa-fw"></em>  <em class="fa fa-caret-down"></em>
 		                        	<div class="msgAlert"><c:out value="${alertcount}"/></div>
 		                    </a>
 		                    <script>

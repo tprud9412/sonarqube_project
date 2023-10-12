@@ -3,6 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 	 <table class="table table-striped table-bordered table-hover">
+		 <caption>This table displays user information</caption>
 		<colgroup>
 			<col width='20%' />
 			<col width='40%' />

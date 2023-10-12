@@ -57,7 +57,7 @@ function fn_formSubmit(){
             <div class="row">
                 <div class="col-lg-12">
 		            <button type="button" class="btn btn-default pull-right" onclick="fn_moveToURL('mailInfoForm')">
-		            <i class="fa fa-edit fa-fw"></i> 서버정보추가</button>      
+		            <em class="fa fa-edit fa-fw"></em> 서버정보추가</button>
 				</div>
             </div>
             <!-- /.row -->
@@ -65,12 +65,13 @@ function fn_formSubmit(){
                 <div class="col-lg-8">
             				<div class="table-responsive table-bordered">
                                 <table class="table">
+                                    <caption>This table displays user information</caption>
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>IMAP</th>
-                                            <th>SMTP</th>
-                                            <th>계정</th>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">IMAP</th>
+                                            <th scope="col">SMTP</th>
+                                            <th scope="col">계정</th>
                                         </tr>
                                     </thead>
                                     <tbody>

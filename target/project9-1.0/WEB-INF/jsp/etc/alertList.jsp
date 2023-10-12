@@ -50,7 +50,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-bell fa-fw"></i> <s:message code="common.alert"/></h1>
+                    <h1 class="page-header"><em class="fa fa-bell fa-fw"></em> <s:message code="common.alert"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -78,7 +78,7 @@ function fn_formSubmit(){
 							<div class="listHiddenField pull-right field100 textCenter"><a href="boardList?bgno=<c:out value="${searchVO.bgno}"/>&searchExt1=<c:out value="${listview.userno}"/>"><c:out value="${listview.brdwriter}"/></a></div>
 							<div class="listTitle" title="<c:out value="${listview.brdtitle}"/>">
 								<div class="pull-left field30">
-							    	<i class="fa fa-<c:out value="${listview.extfield1}"/> fa-fw"></i> 
+							    	<em class="fa fa-<c:out value="${listview.extfield1}"/> fa-fw"></em>
 								</div>
 							
 								<a href="${link}" <c:if test="${listview.brdnotice=='Y'}">class="notice"</c:if>><c:out value="${listview.brdtitle}"/></a>
@@ -89,8 +89,8 @@ function fn_formSubmit(){
 							<div class="showField text-muted small col-lg-12">
 								<c:out value="${listview.brdwriter}"/> 
 								<c:out value="${listview.brddate}"/>
-								<i class="fa fa-eye fa-fw"></i> <c:out value="${listview.brdhit}"/>
-								<i class="fa fa-thumbs-o-up fa-fw"> <c:out value="${listview.brdlike}"/></i>
+								<em class="fa fa-eye fa-fw"></em> <c:out value="${listview.brdhit}"/>
+								<em class="fa fa-thumbs-o-up fa-fw"> <c:out value="${listview.brdlike}"/></em>
 							</div>
 						</div>
 					
