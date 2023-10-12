@@ -64,8 +64,8 @@ function fn_formSubmit(){
             <div class="row">
                 <div class="col-lg-8">
             				<div class="table-responsive table-bordered">
-                                <!-- This table displays IMAP and SMTP server information -->
                                 <table class="table">
+                                    <caption>This table displays user information</caption>
                                     <thead>
                                         <tr>
                                             <th scope="col">No.</th>

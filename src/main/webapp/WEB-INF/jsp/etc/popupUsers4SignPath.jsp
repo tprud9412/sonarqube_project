@@ -146,6 +146,7 @@ function fn_closeUsers() {
 			                    </div>
 			                    <div class="panel-body maxHeight400">
 									 <table  id="seletedUsers" class="table table-striped table-bordered table-hover">
+										<caption>This table displays user information</caption>
 										<colgroup>
 											<col width='30%' />
 											<col width='60%' />
