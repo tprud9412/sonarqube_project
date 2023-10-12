@@ -5,10 +5,10 @@
 
      <div class="col-lg-12">
          <h1 class="page-header">
-         <a href="javascript: fn_moveDate('<c:out value="${preWeek}"/>')"><i class="fa fa-angle-left fa-fw"></i></a>
+         <a href="javascript: fn_moveDate('<c:out value="${preWeek}"/>')"><em class="fa fa-angle-left fa-fw"></em></a>
          
          <c:out value="${month}"/>월 <c:out value="${week}"/>째주
-         <a href="javascript: fn_moveDate('<c:out value="${nextWeek}"/>')"><i class="fa fa-angle-right fa-fw"></i></a>
+         <a href="javascript: fn_moveDate('<c:out value="${nextWeek}"/>')"><em class="fa fa-angle-right fa-fw"></em></a>
          </h1>
      </div>
  

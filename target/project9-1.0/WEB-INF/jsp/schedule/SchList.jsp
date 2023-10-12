@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,7 +95,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><i class="fa fa-calendar fa-fw"></i> 월간 일정</h1>
+                <h1 class="page-header"><em class="fa fa-calendar fa-fw"></em> 월간 일정</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -106,9 +106,9 @@
             <div class="col-lg-10">
                 <h1>
 
-					<a href="#" onclick="changeMonth(-1)"><i class="fa fa-angle-left fa-fw"></i></a>
+					<a href="#" onclick="changeMonth(-1)"><em class="fa fa-angle-left fa-fw"></em></a>
                     <c:out value="${searchVO.year}"/>년 <c:out value="${searchVO.month}"/>월
-					<a href="#" onclick="changeMonth(1)"><i class="fa fa-angle-right fa-fw"></i></a>
+					<a href="#" onclick="changeMonth(1)"><em class="fa fa-angle-right fa-fw"></em></a>
 
                 </h1>
             </div>

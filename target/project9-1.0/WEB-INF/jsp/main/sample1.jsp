@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -147,7 +147,7 @@ function fn_showCode(id){
                         <input class="form-control" type="text" name="deptnm" id="deptnm" readonly="readonly">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" onclick="fn_searchDept()">
-                                <i class="fa fa-search"></i>
+                                <em class="fa fa-search"></em>
                             </button>
                         </span>
                     </div>

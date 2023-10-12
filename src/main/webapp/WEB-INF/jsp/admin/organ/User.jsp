@@ -297,7 +297,7 @@ function fn_UserDelete(userno){
                             <div class="col-lg-1"></div>
                             <div class="col-lg-2"><label><s:message code="common.photo"/></label></div>
                             <div class="col-sm-3">
-                            	<img id="previewImg" style="width:100%; height: 120px; max-width: 100px;">
+                            	<img id="previewImg" alt="preview" style="width:100%; height: 120px; max-width: 100px;">
                             </div>
                             <div class="col-lg-5">
 								<input type="file" name="photofile" id="photofile" accept='image/*'/>

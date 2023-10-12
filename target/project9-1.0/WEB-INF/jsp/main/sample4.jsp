@@ -4,7 +4,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,7 +52,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-files-o fa-fw"></i> 게시판</h1>
+                    <h1 class="page-header"><em class="fa fa-files-o fa-fw"></em> 게시판</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -60,7 +61,7 @@ function fn_formSubmit(){
             <div class="row">
                 <div class="col-lg-12">
                      <button type="button" class="btn btn-default pull-right" onclick="fn_moveToURLbyForm('form1', 'sample4Excel', '엑셀 다운로드를 ')">
-                     <i class="fa fa-file-excel-o fa-fw"></i> <s:message code="common.excel"/></button>      
+                     <em class="fa fa-file-excel-o fa-fw"></em> <s:message code="common.excel"/></button>
                 </div>
             </div>
             <!-- /.row -->
@@ -92,7 +93,7 @@ function fn_formSubmit(){
                             
                             <div class="listHiddenField pull-right field60">
                                 <c:if test="${listview.filecnt>0}">
-                                    <i class="fa fa-download fa-fw" title="<c:out value="${listview.filecnt}"/>"></i>
+                                    <em class="fa fa-download fa-fw" title="<c:out value="${listview.filecnt}"/>"></em>
                                 </c:if>    
                             </div>
                             <div class="listHiddenField pull-right field60 textCenter"><c:out value="${listview.brdhit}"/></div>
@@ -107,9 +108,9 @@ function fn_formSubmit(){
                             <div class="showField text-muted small">
                                 <c:out value="${listview.brdwriter}"/> 
                                 <c:out value="${listview.brddate}"/>
-                                <i class="fa fa-eye fa-fw"></i> <c:out value="${listview.brdhit}"/>
+                                <em class="fa fa-eye fa-fw"></em> <c:out value="${listview.brdhit}"/>
                                 <c:if test="${listview.filecnt>0}">
-                                    <i class="fa fa-download fa-fw" title="<c:out value="${listview.filecnt}"/>"></i>
+                                    <em class="fa fa-download fa-fw" title="<c:out value="${listview.filecnt}"/>"></em>
                                 </c:if>                                    
                             </div>
                         </div>
@@ -140,7 +141,7 @@ function fn_formSubmit(){
                                            value='<c:out value="${searchVO.searchKeyword}"/>' >
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" onclick="fn_formSubmit()">
-                                        <i class="fa fa-search"></i>
+                                        <em class="fa fa-search"></em>
                                     </button>
                                 </span>
                            </div>

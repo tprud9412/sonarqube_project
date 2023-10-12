@@ -72,7 +72,7 @@ function addRow(optionIndex, userno, usernm, userpos) {
 	
 	td = $("<TD>");
 	tr.append(td);
-	td.html("<a href='javascript:fn_UserDelete(" + userno +")'><i class='fa fa-times fa-fw'></i></a>");
+	td.html("<a href='javascript:fn_UserDelete(" + userno +")'><em class='fa fa-times fa-fw'></em></a>");
 	
 	if (userpos==="") userpos = typearr[optionIndex];
 	td = $("<TD>");
@@ -109,7 +109,7 @@ function fn_closeUsers() {
 		                   	<div class="input-group custom-search-form">
 	                        	<input class="form-control" type="text" id="keyword4Users" name="keyword4Users" onkeydown="if(event.keyCode == 13) { fn_search4Users();}">
 	                            <span class="input-group-btn">
-	                            	<button class="btn btn-default" onclick="fn_search4Users()"><i class="fa fa-search"></i></button>
+	                            	<button class="btn btn-default" onclick="fn_search4Users()"><em class="fa fa-search"></em></button>
 	                            </span>
 	                       	</div>
 					</div>
@@ -153,10 +153,10 @@ function fn_closeUsers() {
 										</colgroup>
 										<thead>
 											<tr>
-												<th></th> 
-												<th><s:message code="common.name"/></th>
-												<th></th> 
-												<th style="display:none"></th> 
+												<th scope="col"></th>
+												<th scope="col"><s:message code="common.name"/></th>
+												<th scope="col"></th>
+												<th scope="col" style="display:none"></th>
 											</tr>
 										</thead>
 										<tbody>

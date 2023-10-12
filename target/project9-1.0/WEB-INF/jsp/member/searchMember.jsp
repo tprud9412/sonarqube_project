@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -49,7 +49,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-users fa-fw"></i> <s:message code="memu.users"/></h1>
+                    <h1 class="page-header"><em class="fa fa-users fa-fw"></em> <s:message code="memu.users"/></h1>
                 </div>
             </div>
             
@@ -64,7 +64,7 @@ function fn_formSubmit(){
                         	<input class="form-control" placeholder="Search..." type="text" id="searchKeyword" name="searchKeyword" 
                                 	   value='<c:out value="${searchVO.searchKeyword}"/>' >
                             <span class="input-group-btn">
-                            <button class="btn btn-default" onclick="fn_formSubmit()"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-default" onclick="fn_formSubmit()"><em class="fa fa-search"></em></button>
                             </span>
                        	</div>
 					</div>

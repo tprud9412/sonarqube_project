@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -79,7 +79,7 @@ function fn_showCode(id){
                  </div>
                 <div class="col-lg-1">
                     <button class="btn btn-default" type="button" onclick="fn_showCode('#popupCode')" title="코드 보기">
-                        <i class="fa fa-code"></i> 코드 보기
+                        <em class="fa fa-code"></em> 코드 보기
                     </button>
                 </div>                 
             </div>

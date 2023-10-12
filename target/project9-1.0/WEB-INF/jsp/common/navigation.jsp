@@ -17,7 +17,7 @@
                     <c:if test="${alertcount>0}">
 		                <li class="dropdown">
 		                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="showAlertList()">
-		                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+		                        <em class="fa fa-bell fa-fw"></em>  <i class="fa fa-caret-down"></i>
 		                        	<div class="msgAlert"><c:out value="${alertcount}"/></div>
 		                    </a>
 		                    <script>
@@ -42,13 +42,13 @@
 	                <!-- /.dropdown -->
 	                <li class="dropdown">
 	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+	                        <em class="fa fa-user fa-fw"></em>  <em class="fa fa-caret-down"></em>
 	                    </a>
 	                    <ul class="dropdown-menu dropdown-user">
-	                        <li><a href="memberForm"><i class="fa fa-user fa-fw"></i> <c:out value="${sessionScope.usernm}"/></a></li>
-	                        <li><a href="searchMember"><i class="fa fa-users fa-fw"></i> <s:message code="memu.users"/></a></li>
+	                        <li><a href="memberForm"><em class="fa fa-user fa-fw"></em> <c:out value="${sessionScope.usernm}"/></a></li>
+	                        <li><a href="searchMember"><em class="fa fa-users fa-fw"></em> <s:message code="memu.users"/></a></li>
 	                        <li class="divider"></li>
-	                        <li><a href="memberLogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+	                        <li><a href="memberLogout"><em class="fa fa-sign-out fa-fw"></em> Logout</a>
 	                        </li>
 	                    </ul>
 	                    <!-- /.dropdown-user -->
@@ -69,7 +69,7 @@
 	                                <input class="form-control" type="text" name="globalKeyword" id="globalKeyword" placeholder="Search...">
 	                                <span class="input-group-btn">
 	                                    <button class="btn btn-default" type="button" onclick="fn_search()">
-	                                        <i class="fa fa-search"></i>
+	                                        <em class="fa fa-search"></em>
 	                                    </button>
 	                                </span>
 	                            </div>                           	
@@ -83,10 +83,10 @@
 	                                </script>                            <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="boardList"><i class="fa fa-files-o fa-fw"></i> <s:message code="board.boardName"/></a>
+                            <a href="boardList"><em class="fa fa-files-o fa-fw"></em> <s:message code="board.boardName"/></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> 전자결재<span class="fa arrow"></span></a>
+                            <a href="#"><em class="fa fa-edit fa-fw"></em> 전자결재<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li>
                                     <a href="signDocTypeList">기안하기</a>
@@ -100,10 +100,10 @@
 	                        </ul>                             
                         </li>                        
                         <li>
-                            <a href="schList"><i class="fa fa-calendar fa-fw"></i> 일정관리</a>
+                            <a href="schList"><em class="fa fa-calendar fa-fw"></em> 일정관리</a>
                         </li>                        
                         <li>
-                            <a href="#"><i class="fa fa-envelope-o fa-fw"></i> 메일<span class="fa arrow"></span></a>
+                            <a href="#"><em class="fa fa-envelope-o fa-fw"></em> 메일<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li>
                                     <a href="mailForm">새메일</a> 
@@ -122,10 +122,10 @@
 	                            <a href="#"> <s:message code="memu.admin"/></a>
 	                        </li>
 	                        <li>
-	                            <a href="adBoardGroupList"><i class="fa fa-files-o fa-fw"></i> <s:message code="memu.board"/></a>
+	                            <a href="adBoardGroupList"><em class="fa fa-files-o fa-fw"></em> <s:message code="memu.board"/></a>
 	                        </li>
 	                        <li>
-	                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> <s:message code="memu.organ"/><span class="fa arrow"></span></a>
+	                            <a href="#"><em class="fa fa-sitemap fa-fw"></em> <s:message code="memu.organ"/><span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
 	                                <li>
 	                                    <a href="adDepartment"><s:message code="memu.dept"/></a>
@@ -136,7 +136,7 @@
 	                            </ul>
 	                        </li>
                              <li>
-                                 <a href="adSignDocTypeList"><i class="fa fa-edit fa-fw"></i> 결재문서양식</a>
+                                 <a href="adSignDocTypeList"><em class="fa fa-edit fa-fw"></em> 결재문서양식</a>
                              </li>
 	                	</c:if>	        
                     </ul>

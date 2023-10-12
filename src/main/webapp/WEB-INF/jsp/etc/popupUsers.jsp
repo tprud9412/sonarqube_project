@@ -19,7 +19,7 @@ function set_Users(usernos, usernms) {
 	var nos = usernos.split(",");
 	var nms = usernms.split(",");
 	for (var i in nos) {
-		$("#seletedUsers > tbody").append("<tr id='tr" + nos[i] +"'><td>" + nms[i] + "</td><td><a href='javascript:fn_UserDelete(" + nos[i] +")'><i class='fa fa-times fa-fw'></i></a></td><tr>");
+		$("#seletedUsers > tbody").append("<tr id='tr" + nos[i] +"'><td>" + nms[i] + "</td><td><a href='javascript:fn_UserDelete(" + nos[i] +")'><em class='fa fa-times fa-fw'></em></a></td><tr>");
 	}
 }
 
@@ -43,7 +43,7 @@ function fn_addUser(userno, usernm, deptnm) {
     	return;
     }
     
-	$("#seletedUsers > tbody").append("<tr id='tr" + userno +"'><td>" + usernm + "</td><td><a href='javascript:fn_UserDelete(" + userno +")'><i class='fa fa-times fa-fw'></i></a></td><tr>");
+	$("#seletedUsers > tbody").append("<tr id='tr" + userno +"'><td>" + usernm + "</td><td><a href='javascript:fn_UserDelete(" + userno +")'><em class='fa fa-times fa-fw'></em></a></td><tr>");
 }
 function fn_UserDelete(userno) {
 	$("#tr"+userno).remove();
@@ -73,7 +73,7 @@ function fn_closeUsers() {
 		                   	<div class="input-group custom-search-form">
 	                        	<input class="form-control" type="text" id="keyword4Users" name="keyword4Users" onkeydown="if(event.keyCode == 13) { fn_search4Users();}">
 	                            <span class="input-group-btn">
-	                            	<button class="btn btn-default" onclick="fn_search4Users()"><i class="fa fa-search"></i></button>
+	                            	<button class="btn btn-default" onclick="fn_search4Users()"><em class="fa fa-search"></em></button>
 	                            </span>
 	                       	</div>
 					</div>
@@ -116,8 +116,8 @@ function fn_closeUsers() {
 										</colgroup>
 										<thead>
 											<tr>
-												<th><s:message code="common.name"/></th>
-												<th></th> 
+												<th scope="col"><s:message code="common.name"/></th>
+												<th scope="col"></th>
 											</tr>
 										</thead>
 										<tbody>

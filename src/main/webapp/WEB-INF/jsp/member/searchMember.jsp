@@ -82,10 +82,10 @@ function fn_formSubmit(){
 						</colgroup>
 						<thead>
 							<tr>
-								<th><s:message code="board.no"/></th> 
-								<th><s:message code="common.id"/></th>
-								<th><s:message code="common.name"/></th>
-								<th><s:message code="common.deptName"/></th>
+								<th scope="col"><s:message code="board.no"/></th>
+								<th scope="col"><s:message code="common.id"/></th>
+								<th scope="col"><s:message code="common.name"/></th>
+								<th scope="col"><s:message code="common.deptName"/></th>
 							</tr>
 						</thead>
 						<tbody>

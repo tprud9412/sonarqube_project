@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -210,7 +210,7 @@ function fn_UserDelete(userno){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-user fa-fw"></i> <s:message code="memu.user"/></h1>
+                    <h1 class="page-header"><em class="fa fa-user fa-fw"></em> <s:message code="memu.user"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -297,7 +297,7 @@ function fn_UserDelete(userno){
                             <div class="col-lg-1"></div>
                             <div class="col-lg-2"><label><s:message code="common.photo"/></label></div>
                             <div class="col-sm-3">
-                            	<img id="previewImg" style="width:100%; height: 120px; max-width: 100px;">
+                            	<img id="previewImg" alt="preview" style="width:100%; height: 120px; max-width: 100px;">
                             </div>
                             <div class="col-lg-5">
 								<input type="file" name="photofile" id="photofile" accept='image/*'/>

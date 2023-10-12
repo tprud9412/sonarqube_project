@@ -12,11 +12,11 @@
 						</colgroup>
 						<thead>
 							<tr>
-								<th><s:message code="board.no"/></th> 
-								<th><s:message code="common.id"/></th>
-								<th><s:message code="common.name"/></th>
-								<th><s:message code="common.role"/></th>
-								<th></th>
+								<th scope="col"><s:message code="board.no"/></th>
+								<th scope="col"><s:message code="common.id"/></th>
+								<th scope="col"><s:message code="common.name"/></th>
+								<th scope="col"><s:message code="common.role"/></th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>

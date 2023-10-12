@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +50,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-gear fa-fw"></i> <s:message code="common.codecd"/></h1>
+                    <h1 class="page-header"><em class="fa fa-gear fa-fw"></em> <s:message code="common.codecd"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -59,7 +59,7 @@ function fn_formSubmit(){
             <div class="row">
                 <div class="col-lg-12">
 		            <button type="button" class="btn btn-default pull-right" onclick="fn_moveToURL('adCodeForm')">
-		            <i class="fa fa-edit fa-fw"></i> <s:message code="common.codecd"/></button>      
+		            <em class="fa fa-edit fa-fw"></em> <s:message code="common.codecd"/></button>
 				</div>
             </div>
             <!-- /.row -->
@@ -106,7 +106,7 @@ function fn_formSubmit(){
 	                                	   value='<c:out value="${searchVO.searchKeyword}"/>' >
 	                                <span class="input-group-btn">
 	                                <button class="btn btn-default" onclick="fn_formSubmit()">
-	                                    <i class="fa fa-search"></i>
+	                                    <em class="fa fa-search"></em>
 	                                </button>
 	                            </span>
 	                       </div>

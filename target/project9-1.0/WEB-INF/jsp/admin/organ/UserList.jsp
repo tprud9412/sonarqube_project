@@ -26,7 +26,7 @@
 									<td><a href="javascript:fn_UserRead(<c:out value="${listview.userno}"/>)"><c:out value="${listview.userid}"/></a></td>
 									<td><a href="javascript:fn_UserRead(<c:out value="${listview.userno}"/>)"><c:out value="${listview.usernm}"/></a></td>
 									<td><c:out value="${listview.userrole}"/></td>
-									<td><a href="javascript:fn_UserDelete(<c:out value="${listview.userno}"/>)"><i class="fa fa-times fa-fw"></i></a></td>
+									<td><a href="javascript:fn_UserDelete(<c:out value="${listview.userno}"/>)"><em class="fa fa-times fa-fw"></em></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

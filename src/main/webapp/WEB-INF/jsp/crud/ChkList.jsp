@@ -55,7 +55,7 @@ function fnCheckAll() {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-gear fa-fw"></i> <s:message code="crud.title"/></h1>
+                    <h1 class="page-header"><em class="fa fa-gear fa-fw"></em> <s:message code="crud.title"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -64,7 +64,7 @@ function fnCheckAll() {
             <div class="row">
                 <div class="col-lg-12">
 		            <button type="button" class="btn btn-default pull-right" onclick="form2.submit()">
-		            <i class="fa fa-times fa-fw"></i> <s:message code="common.btnDelete"/></button>      
+		            <em class="fa fa-times fa-fw"></em> <s:message code="common.btnDelete"/></button>
 				</div>
             </div>
             <!-- /.row -->
@@ -123,7 +123,7 @@ function fnCheckAll() {
 	                                	   value='<c:out value="${searchVO.searchKeyword}"/>' >
 	                                <span class="input-group-btn">
 	                                <button class="btn btn-default" onclick="fn_formSubmit()">
-	                                    <i class="fa fa-search"></i>
+	                                    <em class="fa fa-search"></em>
 	                                </button>
 	                            </span>
 	                       </div>

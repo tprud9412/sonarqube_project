@@ -37,7 +37,7 @@ function fn_search() {
 	                   	<div class="input-group custom-search-form">
                         	<input class="form-control" type="text" id="searchKeyword" name="searchKeyword" onkeydown="if(event.keyCode == 13) { fn_search();}">
                             <span class="input-group-btn">
-                            	<button class="btn btn-default" onclick="fn_search()"><i class="fa fa-search"></i></button>
+                            	<button class="btn btn-default" onclick="fn_search()"><em class="fa fa-search"></em></button>
                             </span>
                        	</div>
 					</div>                    

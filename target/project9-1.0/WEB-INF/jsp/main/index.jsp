@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -164,7 +164,7 @@ function calendarDayMouseout(){
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-send fa-fw"></i> Recent News
+                            <em class="fa fa-send fa-fw"></em> Recent News
                             <div class="pull-right"><a href="boardList">more</a>
                             </div>
                         </div>
@@ -203,7 +203,7 @@ function calendarDayMouseout(){
                 <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-volume-up fa-fw"></i> <s:message code="common.notice"/>
+                            <em class="fa fa-volume-up fa-fw"></em> <s:message code="common.notice"/>
                         </div>
                         <div class="panel-body maxHeight400">
                             <c:forEach var="noticeList" items="${noticeList}" varStatus="status">    
@@ -222,7 +222,7 @@ function calendarDayMouseout(){
                     <!-- Time Line -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Time Line
+                            <em class="fa fa-clock-o fa-fw"></em> Time Line
                         </div>
                         <div class="panel-body maxHeight400">
                             <ul class="chat">
@@ -233,7 +233,7 @@ function calendarDayMouseout(){
                                                     <c:choose>
                                                     <c:when test="${listtime.photo==null}">
                                                         <span class="chat-img pull-left img-circle">
-                                                            <i class="glyphicon glyphicon-user noPhoto"></i>
+                                                            <em class="glyphicon glyphicon-user noPhoto"></em>
                                                         </span>
                                                     </c:when>
                                                     <c:otherwise>
@@ -244,7 +244,7 @@ function calendarDayMouseout(){
                                                     <div class="header">
                                                         <strong class="primary-font"><c:out value="${listtime.rewriter}"/></strong>
                                                         <small class="pull-right text-muted">
-                                                            <i class="fa fa-clock-o fa-fw"></i> <c:out value="${listtime.redate}"/>
+                                                            <em class="fa fa-clock-o fa-fw"></em> <c:out value="${listtime.redate}"/>
                                                         </small>
                                                     </div>
                                                     <p>
@@ -258,7 +258,7 @@ function calendarDayMouseout(){
                                                 <c:choose>
                                                 <c:when test="${listtime.photo==null}">
                                                     <span class="chat-img pull-right img-circle">
-                                                        <i class="glyphicon glyphicon-user noPhoto"></i>
+                                                        <em class="glyphicon glyphicon-user noPhoto"></em>
                                                     </span>
                                                 </c:when>
                                                 <c:otherwise>
@@ -268,7 +268,7 @@ function calendarDayMouseout(){
                                                 <div class="chat-body clearfix">
                                                     <div class="header">
                                                         <small class=" text-muted">
-                                                            <i class="fa fa-clock-o fa-fw"></i> <c:out value="${listtime.redate}"/></small>
+                                                            <em class="fa fa-clock-o fa-fw"></em> <c:out value="${listtime.redate}"/></small>
                                                         <strong class="pull-right primary-font"><c:out value="${listtime.rewriter}"/></strong>
                                                     </div>
                                                     <p>

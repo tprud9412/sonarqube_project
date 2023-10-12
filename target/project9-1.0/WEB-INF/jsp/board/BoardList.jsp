@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,7 +96,7 @@ function TreenodeActivate(node) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-files-o fa-fw"></i> <c:out value="${bgInfo.bgname}"/></h1>
+                    <h1 class="page-header"><em class="fa fa-files-o fa-fw"></em> <c:out value="${bgInfo.bgname}"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -104,7 +104,7 @@ function TreenodeActivate(node) {
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-	                <button id="boardlistBtn" type="button" class="btn btn-default" onclick="showBoardList()"><i class="fa  fa-files-o fa-fw"></i> <c:out value="${bgInfo.bgname}"/></button>      
+	                <button id="boardlistBtn" type="button" class="btn btn-default" onclick="showBoardList()"><em class="fa  fa-files-o fa-fw"></em> <c:out value="${bgInfo.bgname}"/></button>
 	                <div id="boardlistDiv" style="width: 250px; height:300px; display: none;" class="popover fade bottom in" role="tooltip">
 	                	<div style="left:15%;" class="arrow"></div>
 	                	<div class="popover-content">
@@ -114,7 +114,7 @@ function TreenodeActivate(node) {
                 
 					<c:if test="${bgInfo.bgreadonly=='N' || sessionScope.userrole=='A'}">
 			            <button type="button" class="btn btn-default pull-right" onclick="fn_moveToURL('boardForm?bgno=<c:out value="${searchVO.bgno}"/>')">
-			            <i class="fa fa-edit fa-fw"></i> <s:message code="board.new"/></button>      
+			            <em class="fa fa-edit fa-fw"></em> <s:message code="board.new"/></button>
 					</c:if>
 				</div>
             </div>
@@ -175,7 +175,7 @@ function TreenodeActivate(node) {
 	                                	   value='<c:out value="${searchVO.searchKeyword}"/>' >
 	                                <span class="input-group-btn">
 	                                <button class="btn btn-default" onclick="fn_formSubmit()">
-	                                    <i class="fa fa-search"></i>
+	                                    <em class="fa fa-search"></em>
 	                                </button>
 	                            </span>
 	                       </div>
