@@ -204,22 +204,10 @@
     </plugins>
   </build>
 
-  <profiles>
-    <profile>
-      <id>dev</id>
-      <properties>
-        <sonar.host.url>http://localhost:9000/</sonar.host.url>
-        <sonar.login>your-dev-sonar-login</sonar.login>
-      </properties>
-    </profile>
-    <profile>
-      <id>prod</id>
-      <properties>
-        <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
-        <sonar.login>e74560232b0886ca76d130f1ba0c43c93a1cd5e6</sonar.login>
-      </properties>
-    </profile>
-  </profiles>
+  <properties>
+    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
+    <sonar.login>e74560232b0886ca76d130f1ba0c43c93a1cd5e6</sonar.login>
+  </properties>
 
   <distributionManagement>
     <repository>
