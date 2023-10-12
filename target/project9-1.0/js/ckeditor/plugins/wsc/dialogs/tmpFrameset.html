@@ -3,7 +3,7 @@
 Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 -->
-<html>
+<html lang="ko">
 <head>
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -43,10 +43,10 @@ function tryLoad()
 	</script>
 </head>
 
-<frameset id="itFrameset" onload="tryLoad();" border="0" rows="30,*,*,0">
-    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="2" src="" name="navbar"></frame>
-    <frame scrolling="auto" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="0" src="" name="mid"></frame>
-    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" name="bot"></frame>
-    <frame scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" name="spellsuggestall"></frame>
-</frameset>
+<body id="itFrameset" onload="tryLoad();" border="0" rows="30,*,*,0">
+    <iframe title="Navigation Bar" scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="2" src="" name="navbar"></iframe>
+    <iframe title="Main Content" scrolling="auto" framespacing="0" frameborder="0" noresize="noresize" marginheight="0" marginwidth="0" src="" name="mid"></iframe>
+    <iframe title="Bottom Frame" scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" name="bot"></iframe>
+    <iframe title="Spell Suggestion Frame" scrolling="no" framespacing="0" frameborder="0" noresize="noresize" marginheight="1" marginwidth="1" src="" name="spellsuggestall"></iframe>
+</body>
 </html>
