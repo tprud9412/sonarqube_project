@@ -113,7 +113,12 @@ public class FileUtil {
                 BufferedImage resizeImageJpg = resizeImage(srcImage, type);
                 ImageIO.write(resizeImageJpg, ext, new File(serverFullPath + "1"));
                 newName += "1";
-                file1.delete();
+
+                if (file1.delete()) {
+                    LOGGER.info("File deleted successfully");
+                } else {
+                    LOGGER.error("Failed to delete the file");
+                }
             }
         } catch (IOException ex) {
             LOGGER.error("IOException:saveImage");
@@ -156,9 +161,16 @@ public class FileUtil {
         // 의사난수 생성
         byte[] randomBytes = new byte[8]; // 8 바이트 길이의 의사난수 생성
         secureRandom.nextBytes(randomBytes);
-        long randomValue = Math.abs(secureRandom.nextLong());
 
-        return ft.format(new Date())+randomValue;
+        return ft.format(new Date()) + byteArrayToHex(randomBytes);
+    }
+
+    public static String byteArrayToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
     
     public String getFileExtension(String filename) {

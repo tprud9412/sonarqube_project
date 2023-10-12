@@ -54,9 +54,8 @@ public class FileDownload {
         
         // 파일명 지정
         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-        try {
+        try (FileInputStream fis = new FileInputStream(realPath)) {
             OutputStream os = response.getOutputStream();
-            FileInputStream fis = new FileInputStream(realPath);
 
             int ncount = 0;
             byte[] bytes = new byte[512];
@@ -70,6 +69,12 @@ public class FileDownload {
             LOGGER.error("FileNotFoundException");
         } catch (IOException ex) {
             LOGGER.error("IOException");
+        }finally {
+            try {
+                response.getOutputStream().close();
+            } catch (IOException ex) {
+                LOGGER.error("IOException");
+            }
         }
     }
     

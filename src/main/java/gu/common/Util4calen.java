@@ -153,7 +153,16 @@ public class Util4calen {
         String dt1 = date2Str(date1);
         String dt2 = date2Str(date2);
 
-        Integer day = (int) ( (str2Date(dt1).getTime() - str2Date(dt2).getTime()) / (24 * 60 * 60 * 1000) );
+        Date dateDt1 = str2Date(dt1);
+        Date dateDt2 = str2Date(dt2);
+
+        if (dateDt1 == null || dateDt2 == null) {
+            LOGGER.error("str2Date() returned null");
+            return null; // 또는 오류 처리에 따른 다른 값 반환
+        }
+
+        long timeDiff = dateDt1.getTime() - dateDt2.getTime();
+        Integer day = (int) (timeDiff / (24 * 60 * 60 * 1000));
         return day;
     }    
 
