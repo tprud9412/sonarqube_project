@@ -2602,7 +2602,8 @@ TODO: better?
 						dataAttr = "{" + dataAttr + "}";
 					}
 					try {
-						$.extend(data, eval("(" + dataAttr + ")"));
+						var parsedData = JSON.parse(dataAttr);
+						$.extend(data, parsedData);
 					} catch(e) {
 						throw ("Error parsing node data: " + e + "\ndata:\n'" + dataAttr + "'");
 					}
