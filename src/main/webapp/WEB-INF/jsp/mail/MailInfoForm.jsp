@@ -62,7 +62,7 @@ function fn_delete(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-envelope-o fa-fw"></i> 메일정보관리</h1>
+                    <h1 class="page-header"><em class="fa fa-envelope-o fa-fw"></em> 메일정보관리</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

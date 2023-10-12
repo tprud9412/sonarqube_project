@@ -152,7 +152,7 @@ function addNode(nodeNo, nodeTitle){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-files-o fa-fw"></i> <s:message code="memu.board"/></h1>
+                    <h1 class="page-header"><em class="fa fa-files-o fa-fw"></em> <s:message code="memu.board"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

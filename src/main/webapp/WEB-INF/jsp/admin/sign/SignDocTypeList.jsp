@@ -48,7 +48,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-edit fa-fw"></i> 결재문서양식</h1>
+                    <h1 class="page-header"><em class="fa fa-edit fa-fw"></em> 결재문서양식</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -57,7 +57,7 @@ function fn_formSubmit(){
             <div class="row">
                 <div class="col-lg-12">
 		            <button type="button" class="btn btn-default pull-right" onclick="fn_moveToURL('adSignDocTypeForm')">
-		            <i class="fa fa-edit fa-fw"></i> 양식추가</button>      
+		            <em class="fa fa-edit fa-fw"></em> 양식추가</button>
 				</div>
             </div>
             <!-- /.row -->

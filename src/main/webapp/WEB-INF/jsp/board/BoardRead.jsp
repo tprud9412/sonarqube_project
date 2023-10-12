@@ -194,7 +194,7 @@ function fn_addBoardLike(brdno){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-files-o fa-fw"></i> <c:out value="${bgInfo.bgname}"/></h1>
+                    <h1 class="page-header"><em class="fa fa-files-o fa-fw"></em> <c:out value="${bgInfo.bgname}"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -205,8 +205,8 @@ function fn_addBoardLike(brdno){
                     <div class="panel-heading">
                         	<c:out value="${boardInfo.brdtitle}"/> [ <c:out value="${boardInfo.brdwriter}"/> <c:out value="${boardInfo.brddate}"/>]
                         <span class="pull-right text-muted">
-                        	<i class="fa fa-eye fa-fw"></i> <c:out value="${boardInfo.brdhit}"/>
-                        	<i class="fa fa-thumbs-o-up fa-fw"></i> <span id="boardLike"><c:out value="${boardInfo.brdlike}"/></span>
+                        	<em class="fa fa-eye fa-fw"></em> <c:out value="${boardInfo.brdhit}"/>
+                        	<em class="fa fa-thumbs-o-up fa-fw"></em> <span id="boardLike"><c:out value="${boardInfo.brdlike}"/></span>
                         </span>
                     </div>
                     <div class="panel-body">
@@ -228,7 +228,7 @@ function fn_addBoardLike(brdno){
 				</c:if>
 
 				<c:if test="${boardInfo.brdlikechk == null}" >
-	                <button id="boardLikeBtn" class="btn btn-outline btn-primary pull-right" onclick="fn_addBoardLike(<c:out value="${boardInfo.brdno}"/>)" ><i class="fa fa-thumbs-o-up fa-fw"></i> <s:message code="common.like"/></button>
+	                <button id="boardLikeBtn" class="btn btn-outline btn-primary pull-right" onclick="fn_addBoardLike(<c:out value="${boardInfo.brdno}"/>)" ><em class="fa fa-thumbs-o-up fa-fw"></em> <s:message code="common.like"/></button>
 				</c:if>
 							                               
 				<p>&nbsp;</p>
@@ -254,7 +254,7 @@ function fn_addBoardLike(brdno){
 										<c:choose>
 										    <c:when test="${replylist.photo==null}">
 												<a href="" class="img-circle">
-													<i class="glyphicon glyphicon-user noPhoto"></i>
+													<em class="glyphicon glyphicon-user noPhoto"></em>
 												</a>
 										    </c:when>
 										    <c:otherwise>
@@ -266,10 +266,10 @@ function fn_addBoardLike(brdno){
 										<div> 
 											<c:out value="${replylist.rewriter}"/> <c:out value="${replylist.redate}"/>
 											<c:if test='${replylist.userno==sessionScope.userno}' >
-												<a href="javascript:fn_replyDelete('<c:out value="${replylist.reno}"/>')" title="<s:message code="common.btnDelete"/>" ><span class="text-muted"><i class="fa fa-times fa-fw"></i></span></span></a>
-												<a href="javascript:fn_replyUpdate('<c:out value="${replylist.reno}"/>')" title="<s:message code="common.btnUpdate"/>" ><span class="text-muted"><i class="fa fa-edit fa-fw"></i></span></a>
+												<a href="javascript:fn_replyDelete('<c:out value="${replylist.reno}"/>')" title="<s:message code="common.btnDelete"/>" ><span class="text-muted"><em class="fa fa-times fa-fw"></em></span></span></a>
+												<a href="javascript:fn_replyUpdate('<c:out value="${replylist.reno}"/>')" title="<s:message code="common.btnUpdate"/>" ><span class="text-muted"><em class="fa fa-edit fa-fw"></em></span></a>
 											</c:if>
-											<a href="javascript:fn_replyReply('<c:out value="${replylist.reno}"/>')" title="<s:message code="common.btnReply"/>" ><span class="text-muted"><i class="fa fa-comments fa-fw"></i></span></a>
+											<a href="javascript:fn_replyReply('<c:out value="${replylist.reno}"/>')" title="<s:message code="common.btnReply"/>" ><span class="text-muted"><em class="fa fa-comments fa-fw"></em></span></a>
 										</div>
 										<div id="reply<c:out value="${replylist.reno}"/>"><c:out value="${replylist.getRememoByHTML()}" escapeXml="false"/></div>
 									</div>

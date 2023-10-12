@@ -84,7 +84,7 @@ function fn_showCode(id){
                 	<div id="morris-bar-chart"></div>
                 	
                     <button class="btn btn-default" type="button" onclick="fn_showCode('#popupCodeBar')" title="코드 보기">
-                        <i class="fa fa-code"></i> 코드 보기
+                        <em class="fa fa-code"></em> 코드 보기
                     </button>                	
                 </div>
                 
@@ -92,7 +92,7 @@ function fn_showCode(id){
                 	<div id="morris-donut-chart"></div>
                 	
                     <button class="btn btn-default" type="button" onclick="fn_showCode('#popupCodeDonut')" title="코드 보기">
-                        <i class="fa fa-code"></i> 코드 보기
+                        <em class="fa fa-code"></em> 코드 보기
                     </button>                	
                 </div>
             </div>
