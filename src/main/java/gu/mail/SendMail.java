@@ -62,6 +62,7 @@ public class SendMail {
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		}
 		props.put("mail.smtp.socketFactory.fallback", "false");
+		props.put("mail.smtp.ssl.checkserveridentity", "true"); // 추가된 부분
 
 		Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
