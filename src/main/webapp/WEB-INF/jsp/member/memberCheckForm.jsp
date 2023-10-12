@@ -46,13 +46,10 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">마이페이지에 접근하시려면 현재 비밀번호를 입력해주세요.</h3>
-                </div>
                 <div class="panel-body">
                     <form role="form" action="memberPwChk" method="post" id="form1" name="form1">
                         <fieldset>
-                            <legend>비밀번호 확인</legend>
+                            <legend>마이페이지에 접근하시려면 현재 비밀번호를 입력해주세요.</legend>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="currentpw" id="currentpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
                             </div>

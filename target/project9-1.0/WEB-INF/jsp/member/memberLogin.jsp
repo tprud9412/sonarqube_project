@@ -47,11 +47,11 @@ function fn_formSubmit(){
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="memberLoginChk" method="post" id="form1" name="form1">
                             <fieldset>
+                                <legend>로그인</legend>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="ID" name="userid" id="userid" type="email" autofocus value="<c:out value="${userid}"/>">
                                 </div>
