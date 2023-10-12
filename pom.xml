@@ -205,7 +205,7 @@
   </build>
 
   <properties>
-    <sonar.host.url>http://your-sonarqube-server-url</sonar.host.url>
+    <sonar.host.url>http://60.253.9.75:9000/</sonar.host.url>
   </properties>
 
   <distributionManagement>
