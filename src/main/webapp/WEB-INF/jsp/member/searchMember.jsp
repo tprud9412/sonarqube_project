@@ -74,6 +74,7 @@ function fn_formSubmit(){
             <!-- /.row -->
             <div class="row">
 					 <table class="table table-striped table-bordered table-hover">
+						 <!-- This table displays user information -->
 						<colgroup>
 							<col width='10%' />
 							<col width='25%' />
