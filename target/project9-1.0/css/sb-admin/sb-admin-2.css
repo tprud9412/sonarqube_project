@@ -374,7 +374,7 @@ table.dataTable thead .sorting:after {
 }
 
 @media (max-width: 991px) {
-	_navbar-static-top {
+	.navbar-static-top {
 	    position: fixed;
 	    width: 100%;
 	}
@@ -496,7 +496,9 @@ list{
 	color:#337ab7;
 }
 
-_div {border:1px solid #cccccc}
+._div {
+    border: 1px solid #cccccc;
+}
 
 
 .guStyle {
