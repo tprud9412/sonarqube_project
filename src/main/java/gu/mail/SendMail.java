@@ -107,24 +107,23 @@ public class SendMail {
 
 		return addressTo;
 	}
-	
+
 	public String get_mailFile(String filename){
 		File fileDir = new File(filename);
-		BufferedReader in;
-		String mailBody="";
-		try {
-			in = new BufferedReader( new InputStreamReader( new FileInputStream(fileDir), "UTF8"));
-			String line = null;
-			while((line = in.readLine()) != null ) {
-				mailBody += line;
+		StringBuilder mailBody = new StringBuilder();
+
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileDir), "UTF8"))) {
+			String line;
+
+			while ((line = in.readLine()) != null) {
+				mailBody.append(line).append('\n');
 			}
-			in.close();
 		} catch ( FileNotFoundException e1) {
             LOGGER.error("mailFile");
 		} catch (IOException e) {
             LOGGER.error("mailFile");
-		}		
-		return mailBody;
+		}
+		return mailBody.toString();
 	}
 	
 }
