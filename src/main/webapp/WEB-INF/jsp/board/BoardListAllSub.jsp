@@ -13,7 +13,7 @@
 					<c:out value="${listitemNo}"/>
 			    </c:when>
 			    <c:otherwise>
-			    	<i class="fa fa-bell-o fa-fw"></i>
+			    	<em class="fa fa-bell-o fa-fw"></em>
 			    </c:otherwise>
 			</c:choose>
 		</div>
@@ -21,7 +21,7 @@
 		<div class="listHiddenField pull-right field100"><a href="boardList?bgno=<c:out value="${listitem.bgno}"/>"><c:out value="${listitem.bgname}"/></a></div>
 		<div class="listHiddenField pull-right field60">
 			<c:if test="${listitem.filecnt>0}">
-				<i class="fa fa-download fa-fw" title="<c:out value="${listitem.filecnt}"/>"></i>
+				<em class="fa fa-download fa-fw" title="<c:out value="${listitem.filecnt}"/>"></em>
 			</c:if>	
 		</div>
 		<div class="listHiddenField pull-right field60 textCenter"><c:out value="${listitem.brdhit}"/></div>
@@ -36,9 +36,9 @@
 		<div class="showField text-muted small">
 			<c:out value="${listitem.brdwriter}"/> 
 			<c:out value="${listitem.brddate}"/>
-			<i class="fa fa-eye fa-fw"></i> <c:out value="${listitem.brdhit}"/>
+			<em class="fa fa-eye fa-fw"></em> <c:out value="${listitem.brdhit}"/>
 			<c:if test="${listitem.filecnt>0}">
-				<i class="fa fa-download fa-fw" title="<c:out value="${listitem.filecnt}"/>"></i>
+				<em class="fa fa-download fa-fw" title="<c:out value="${listitem.filecnt}"/>"></em>
 			</c:if>
 			[<a href="boardList?bgno=<c:out value="${listitem.bgno}"/>"><c:out value="${listitem.bgname}"/></a>]									
 		</div>

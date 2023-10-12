@@ -57,7 +57,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-files-o fa-fw"></i> <c:out value="${bgInfo.bgname}"/></h1>
+                    <h1 class="page-header"><em class="fa fa-files-o fa-fw"></em> <c:out value="${bgInfo.bgname}"/></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

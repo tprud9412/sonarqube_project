@@ -49,7 +49,7 @@ function fn_formSubmit(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class="fa fa-edit fa-fw"></i> 결제 받을(은) 문서</h1>
+                    <h1 class="page-header"><em class="fa fa-edit fa-fw"></em> 결제 받을(은) 문서</h1>
                 </div>
             </div>
 
@@ -116,7 +116,7 @@ function fn_formSubmit(){
 	                                	   value='<c:out value="${searchVO.searchKeyword}"/>' >
 	                                <span class="input-group-btn">
 	                                <button class="btn btn-default" onclick="fn_formSubmit()">
-	                                    <i class="fa fa-search"></i>
+	                                    <em class="fa fa-search"></em>
 	                                </button>
 	                            </span>
 	                       </div>
