@@ -41,13 +41,26 @@ public class LoginCtr {
     @RequestMapping(value = "memberLoginChk", method = RequestMethod.POST)
     public String memberLoginChk(HttpServletRequest request,HttpServletResponse response, LoginVO loginInfo, ModelMap modelMap) {
 
-        UserVO mdo = memberSvc.selectMember4Login(loginInfo);
-        
-        if (mdo  ==  null) {
-            modelMap.addAttribute("msg", "로그인 할 수 없습니다.");
+        UserVO mdo = memberSvc.selectMember4ID(loginInfo);
+
+        //login
+        if (mdo == null) {
+            modelMap.addAttribute("msg", "로그인할 수 없습니다. 아이디를 확인해주세요.");
             return "common/message";
         }
-        
+
+        if (mdo.getFailcnt() > 4) {
+            modelMap.addAttribute("msg", "사용중지된 계정입니다, 관리자에게 문의하세요.");
+            return "common/message";
+        }
+
+        if (memberSvc.selectMember4Login(loginInfo) == null) {
+            memberSvc.updateLoginFailCnt(mdo, mdo.getFailcnt() + 1);
+            modelMap.addAttribute("msg", "로그인할 수 없습니다. 비밀번호를 확인해주세요.");
+            return "common/message";
+        }
+
+        memberSvc.updateLoginFailCnt(mdo, 0);
         memberSvc.insertLogIn(mdo.getUserno());
         
         HttpSession session = request.getSession();

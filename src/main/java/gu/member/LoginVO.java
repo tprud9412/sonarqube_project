@@ -5,7 +5,16 @@ public class LoginVO {
     private String userid;
     private String userpw;
     private String remember;
-    
+    private int failcnt;
+
+    public int getFailcnt() {
+        return failcnt;
+    }
+
+    public void setFailcnt(int failcnt) {
+        this.failcnt = failcnt;
+    }
+
     public String getUserid() {
         return userid;
     }

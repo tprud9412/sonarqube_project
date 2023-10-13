@@ -61,6 +61,7 @@ public class SendMail {
 		if ("true".equals(smtpssl)){
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		}
+
 		props.put("mail.smtp.socketFactory.fallback", "false");
 		props.put("mail.smtp.ssl.checkserveridentity", "true"); // 추가된 부분
 

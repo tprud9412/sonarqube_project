@@ -30,6 +30,16 @@ public class MemberSvc {
     public UserVO selectMember4Login(LoginVO param) {
         return sqlSession.selectOne("selectMember4Login", param);
     }
+
+    public UserVO selectMember4ID(LoginVO param) {
+        return sqlSession.selectOne("selectMember4ID", param);
+    }
+
+    public void updateLoginFailCnt(UserVO param, int failCnt) {
+        param.setFailcnt(failCnt);
+        sqlSession.update("updateLoginFailCnt", param);
+    }
+
     
     public void insertLogIn(String param) {
         sqlSession.insert("insertLogIn", param);

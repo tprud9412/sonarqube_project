@@ -15,10 +15,20 @@ public class UserVO {
     private String ip;
     private String deptno;
     private String deptnm;
+    private int failcnt;
 
     /* 
      * 사진 
      */
+
+    public int getFailcnt() {
+        return failcnt;
+    }
+
+    public void setFailcnt(int failcnt) {
+        this.failcnt = failcnt;
+    }
+
     private MultipartFile photofile;
 
     public String getUserid() {
