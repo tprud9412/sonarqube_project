@@ -15,7 +15,6 @@ import gu.member.UserVO;
 
 // 추가한 import 문
 import org.springframework.web.bind.annotation.RequestMethod;
-
 @Controller
 public class LoginCtr {    
     private static final Integer cookieExpire = 60 * 60 * 24 * 30; // 1 month
