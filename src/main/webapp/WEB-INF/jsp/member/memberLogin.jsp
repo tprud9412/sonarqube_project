@@ -38,49 +38,6 @@ function fn_formSubmit(){
 }
 </script>
 
-<script>
-    // 새로고침시 이미지 변경되고, 음성듣기 클릭시 음성이 들리는 기능 구현
-    function audio(){
-        var rand = Math.random();
-        var url = 'captchaAudio.do'
-
-        $.ajax({
-            url : url,
-            type : 'POST',
-            dataType : 'text',
-            data : 'rand=' + rand,
-            async : false,
-            success : function(resp){
-                var uAgent = navigator.userAgent;
-                var soundUrl = 'captchaAudio.do?rand=' + rand;
-                // 브라우저별 오디오 처리
-                if (uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {    //IE인 경우
-                    winPlayer(soundUrl);
-                } else if (!!document.createElement('audio').canPlayType){
-                    try {
-                        new Audio(soundUrl).play();
-                    } catch (e) {
-                        winPlayer(soundUrl);
-                    }
-                } else {
-                    window.open(soundUrl, '', 'width=1,height=1');
-                }
-            }
-        });
-    }
-
-    function refreshBtn(type){
-        var rand = Math.random();
-        var url = 'captchaImg.do?rand=' + rand;
-
-        $('#captchaImg').attr("src", url);
-    }
-
-    function winPlayer(objUrl){
-        $("#captchaAudio").html(' <bgsoun src="' + objUrl + '">');       //bgsound 배경음악 제어
-    }
-</script>
-
 </head>
 
 <body>
@@ -101,25 +58,6 @@ function fn_formSubmit(){
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="userpw" id="userpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
                                 </div>
-
-                                <div class="form-group">
-                                    <label style="display:block">자동 로그인 방지</label>
-                                    <div class="captcha">
-                                        <div class="captcha_child">
-                                            <img id ="captchaImg" title ="캡차 이미지" src="captchaImg.do" alt="캡차 이미지"/>
-                                            <div id ="captchaAudio" style="display:none"></div>
-                                        </div>
-                                        <div class="captcha_child_two">
-                                            <a onclick="javaScript:refreshBtn()" class="refreshBtn">
-                                                <i class="fa fa-refresh" aria-hidden="true"></i> 새로고침
-                                            </a>
-                                            <a onclick="javaScript:audio()" class="refreshBtn">
-                                                <i class="fa fa-volum-up" aria-hidden="true"></i> 음성듣기
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Y"  <c:if test='${userid != null && userid != ""}'>checked</c:if>>Remember Me

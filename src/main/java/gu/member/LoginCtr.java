@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import gu.common.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -77,20 +76,7 @@ public class LoginCtr {
         }
 
         return "redirect:/index";
-    }
-
-    @RequestMapping(value = "captchaImg.do")
-    public void captchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        new CaptchaUtil().capthcaImg(request,response);
-    }
-    /**
-     * 소리 자동방지
-     */
-    @RequestMapping(value = "captchaAudio.do")
-    public void captchaAudio(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        new CaptchaUtil().captchaAudio(request,response);
-    }
-
+    }   
     
     /**
      * 로그아웃.
