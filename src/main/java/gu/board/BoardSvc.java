@@ -61,6 +61,9 @@ public class BoardSvc {
         TransactionStatus status = txManager.getTransaction(def);
 
         try {
+            //tile and memo 화이트리스트 XSS 필터링 적용
+            param.setBrdtitle(Jsoup.clean(String.valueOf(param.getBrdtitle()), Safelist.simpleText()));
+            param.setBrdmemo(Jsoup.clean(String.valueOf(param.getBrdmemo()), Safelist.relaxed()));
 
             if (param.getBrdno() == null || "".equals(param.getBrdno())) {
                  sqlSession.insert("insertBoard", param);
@@ -136,7 +139,12 @@ public class BoardSvc {
      * 댓글 저장. 
      */
     public BoardReplyVO insertBoardReply(BoardReplyVO param) {
+
         if (param.getReno() == null || "".equals(param.getReno())) {
+
+            //댓글 내용 화이트리스트 XSS 필터링 적용
+            param.setRememo(Jsoup.clean(String.valueOf(param.getRememo()), Safelist.simpleText()));
+
             if (param.getReparent() != null) {
                 BoardReplyVO replyInfo = sqlSession.selectOne("selectBoardReplyParent", param.getReparent());
                 param.setRedepth(replyInfo.getRedepth());
