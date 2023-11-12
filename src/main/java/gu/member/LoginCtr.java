@@ -42,28 +42,36 @@ public class LoginCtr {
      * 로그인 처리.
      */
     @RequestMapping(value = "memberLoginChk", method = RequestMethod.POST)
-    public String memberLoginChk(HttpServletRequest request,HttpServletResponse response, LoginVO loginInfo, ModelMap modelMap) {
+    public String memberLoginChk(HttpServletRequest request, HttpServletResponse response, LoginVO loginInfo, ModelMap modelMap) {
 
         UserVO mdo = memberSvc.selectMember4ID(loginInfo);
 
-        //login
+        //ID Check
         if (mdo == null) {
-            modelMap.addAttribute("msg", "로그인할 수 없습니다. 아이디를 확인해주세요.");
+            modelMap.addAttribute("msg", "로그인할 수 없습니다. 아이디 및 비밀번호를 확인해주세요.");
             return "common/message";
         }
 
-        if (mdo.getFailcnt() > 4) {
-            modelMap.addAttribute("msg", "사용중지된 계정입니다, 관리자에게 문의하세요.");
-            return "common/message";
-        }
-
+        //PW Check
         if (memberSvc.selectMember4Login(loginInfo) == null) {
-            memberSvc.updateLoginFailCnt(mdo, mdo.getFailcnt() + 1);
-            modelMap.addAttribute("msg", "로그인할 수 없습니다. 비밀번호를 확인해주세요.");
+            modelMap.addAttribute("msg", "로그인할 수 없습니다. 아이디 및 비밀번호를 확인해주세요.");
             return "common/message";
         }
 
-        memberSvc.updateLoginFailCnt(mdo, 0);
+        //Captcha Check
+        Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+        String ans = request.getParameter("answer");
+
+        if(ans!=null && !"".equals(ans)) {
+            if(captcha.isCorrect(ans)) {
+                request.getSession().removeAttribute(Captcha.NAME);
+            }else {
+                modelMap.addAttribute("msg", "보안방지문자가 일치하지 않습니다.");
+                return "common/message";
+            }
+        }
+
+
         memberSvc.insertLogIn(mdo.getUserno());
         
         HttpSession session = request.getSession();
@@ -104,12 +112,12 @@ public class LoginCtr {
     @ResponseBody
     public String chkAnswer(HttpServletRequest request, HttpServletResponse response) {
         String result = "";
+
         Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
         String ans = request.getParameter("answer");
 
         if(ans!=null && !"".equals(ans)) {
             if(captcha.isCorrect(ans)) {
-                request.getSession().removeAttribute(Captcha.NAME);
                 result = "200";
             }else {
                 result = "300";

@@ -24,6 +24,7 @@
 	       <mvc:exclude-mapping path="/images/**"/>
 			<mvc:exclude-mapping path="/captchaImg"/>
 			<mvc:exclude-mapping path="/captchaAudio"/>
+			<mvc:exclude-mapping path="/chkAnswer"/>
 	       <bean class="gu.common.LoginInterceptor"/>
 	    </mvc:interceptor>
 	    <mvc:interceptor>

@@ -41,7 +41,6 @@
         window.onload = function(){
             getImage();	// 이미지 가져오기
             document.querySelector('#check').addEventListener('click', function(){
-                var params = {answer : document.querySelector('#answer').getAttribute('value')};
 
                 $.ajax({
                     url: "chkAnswer",
@@ -52,16 +51,36 @@
                     success: function(returnData){
                         if(returnData == 200){
                             alert('입력값이 일치합니다.');
-                            // 성공 코드
+                            enableLoginButton(); // 로그인 버튼 활성화
+
                         }else {
                             alert('입력값이 일치하지 않습니다.');
                             getImage();
                             document.querySelector('#answer').setAttribute('value', '');
+                            disableLoginButton(); // 로그인 버튼 비활성화
+
                         }}
                 }, 'json');
 
             });
         }
+
+        // 로그인 버튼 활성화 함수
+        function enableLoginButton() {
+            var loginButton = document.querySelector('.btn-login');
+            loginButton.removeAttribute('disabled');
+            loginButton.onclick = function() {
+                fn_formSubmit(); // 클릭 이벤트 핸들러 설정
+            };
+        }
+
+        // 로그인 버튼 비활성화 함수
+        function disableLoginButton() {
+            var loginButton = document.querySelector('.btn-login');
+            loginButton.setAttribute('disabled', 'true');
+            loginButton.onclick = null; // 클릭 이벤트 핸들러 제거
+        }
+
 
         function audio(){
             var rand = Math.random();
@@ -121,7 +140,7 @@
                                     <input class="form-control" placeholder="ID" name="userid" id="userid" type="email" autofocus value="<c:out value="${userid}"/>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="userpw" id="userpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
+                                    <input class="form-control" placeholder="Password" name="userpw" id="userpw" type="password" value="">
                                 </div>
 
                                 <label style="display:block">자동 로그인 방지</label>
@@ -129,15 +148,15 @@
                                     <div style="float:left">
                                         <img id="captchaImage" title="캡차이미지" src="" alt="캡차이미지"/>
                                         <div id="ccaudio" style="display:none"></div>
+                                        <div style="padding:3px">
+                                            <input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"/>
+                                            <input id="soundOn" type="button" onclick="javaScript:audio()" value="음성듣기"/>
+                                        </div>
+                                        <div style="padding:3px">
+                                            <input id="answer" name="answer" type="text" value="">
+                                            <input id="check" name="check" type="button" onclick="" value="확인"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div style="padding:3px">
-                                    <input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"/>
-                                    <input id="soundOn" type="button" onclick="javaScript:audio()" value="음성듣기"/>
-                                </div>
-                                <div style="padding:3px">
-                                    <input id="answer" name="answer" type="text" value="">
-                                    <input id="check" name="check" type="button" onclick="" value="확인"/>
                                 </div>
 
                                 <div class="checkbox">
@@ -146,7 +165,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="#" class="btn btn-lg btn-success btn-block" onclick="fn_formSubmit()">Login</a>
+                                <a href="#" class="btn btn-lg btn-success btn-block btn-login" disabled>Login</a>
                             </fieldset>
                         </form>
                     </div>
