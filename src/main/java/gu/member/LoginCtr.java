@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import gu.common.CaptchaUtil;
+import nl.captcha.Captcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +17,8 @@ import gu.member.UserVO;
 
 // 추가한 import 문
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 @Controller
 public class LoginCtr {    
     private static final Integer cookieExpire = 60 * 60 * 24 * 30; // 1 month
@@ -79,16 +82,40 @@ public class LoginCtr {
         return "redirect:/index";
     }
 
-    @RequestMapping(value = "captchaImg.do")
-    public void captchaImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        new CaptchaUtil().capthcaImg(request,response);
+    @RequestMapping(value = "captchaImg", method = RequestMethod.GET)
+    public void captchaImg(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("test" + request);
+        new CaptchaUtil().getImgCaptCha(request,response);
     }
     /**
-     * 소리 자동방지
+     * 전달받은 문자열로 음성 가져오는 메서드
      */
-    @RequestMapping(value = "captchaAudio.do")
-    public void captchaAudio(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        new CaptchaUtil().captchaAudio(request,response);
+    @RequestMapping(value = "captchaAudio", method = RequestMethod.GET)
+    public void captchaAudio(HttpServletRequest request, HttpServletResponse response){
+        Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+        String getAnswer = captcha.getAnswer();
+        new CaptchaUtil().getAudioCaptCha(request, response, getAnswer);
+    }
+
+    /**
+     * 사용자가 입력한 보안문자 체크하는 메서드
+     */
+    @RequestMapping(value = "chkAnswer", method = RequestMethod.POST)
+    @ResponseBody
+    public String chkAnswer(HttpServletRequest request, HttpServletResponse response) {
+        String result = "";
+        Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+        String ans = request.getParameter("answer");
+
+        if(ans!=null && !"".equals(ans)) {
+            if(captcha.isCorrect(ans)) {
+                request.getSession().removeAttribute(Captcha.NAME);
+                result = "200";
+            }else {
+                result = "300";
+            }
+        }
+        return result;
     }
 
     

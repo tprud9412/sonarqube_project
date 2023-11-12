@@ -28,58 +28,80 @@
     <script src="css/sb-admin/bootstrap.min.js"></script>
     <script src="css/sb-admin/metisMenu.min.js"></script>
     <script src="css/sb-admin/sb-admin-2.js"></script>
-	<script src="js/project9.js"></script>    
-<script>
-function fn_formSubmit(){
-	if ( ! chkInputValue("#userid", "<s:message code="common.id"/>")) return false;
-	if ( ! chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
-	
-	$("#form1").submit();
-}
-</script>
+	<script src="js/project9.js"></script>
 
-<script>
-    // 새로고침시 이미지 변경되고, 음성듣기 클릭시 음성이 들리는 기능 구현
-    function audio(){
-        var rand = Math.random();
-        var url = 'captchaAudio.do'
+    <script>
+        function fn_formSubmit() {
+            if (!chkInputValue("#userid", "<s:message code="common.id"/>")) return false;
+            if (!chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
 
-        $.ajax({
-            url : url,
-            type : 'POST',
-            dataType : 'text',
-            data : 'rand=' + rand,
-            async : false,
-            success : function(resp){
-                var uAgent = navigator.userAgent;
-                var soundUrl = 'captchaAudio.do?rand=' + rand;
-                // 브라우저별 오디오 처리
-                if (uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {    //IE인 경우
-                    winPlayer(soundUrl);
-                } else if (!!document.createElement('audio').canPlayType){
-                    try {
-                        new Audio(soundUrl).play();
-                    } catch (e) {
-                        winPlayer(soundUrl);
-                    }
-                } else {
-                    window.open(soundUrl, '', 'width=1,height=1');
+            $("#form1").submit();
+        }
+
+        window.onload = function(){
+            getImage();	// 이미지 가져오기
+            document.querySelector('#check').addEventListener('click', function(){
+                var params = {answer : document.querySelector('#answer').getAttribute('value')};
+
+                $.ajax({
+                    url: "chkAnswer",
+                    type:"post",
+                    data : {
+                        answer:$("#answer").val(),
+                    },
+                    success: function(returnData){
+                        if(returnData == 200){
+                            alert('입력값이 일치합니다.');
+                            // 성공 코드
+                        }else {
+                            alert('입력값이 일치하지 않습니다.');
+                            getImage();
+                            document.querySelector('#answer').setAttribute('value', '');
+                        }}
+                }, 'json');
+
+            });
+        }
+
+        function audio(){
+            var rand = Math.random();
+            var uAgent = navigator.userAgent;
+            var soundUrl = '${ctx}/captchaAudio?rand='+rand;
+
+            if(uAgent.indexOf('Trident')>-1 || uAgent.indexOf('MISE')>-1){	/*IE 경우 */
+                audioPlayer(soundUrl);
+            }else if(!!document.createElement('audio').canPlayType){ /*Chrome 경우 */
+                try {
+                    new Audio(soundUrl).play();
+                } catch (e) {
+                    audioPlayer(soundUrl);
                 }
+            }else{
+                window.open(soundUrl,'','width=1,height=1');
             }
-        });
-    }
+        }
 
-    function refreshBtn(type){
-        var rand = Math.random();
-        var url = 'captchaImg.do?rand=' + rand;
+        function getImage(){
+            var timestamp = new Date().getTime(); // 현재 시간을 이용하여 timestamp 생성
+            var url = '${ctx}/captchaImg?timestamp=' + timestamp;
 
-        $('#captchaImg').attr("src", url);
-    }
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+                    // 이미지 업데이트 또는 다른 필요한 동작 수행
+                    $("#captchaImage").attr("src", url);
+                },
+                error: function(error) {
+                    console.error('Error fetching captcha image:', error);
+                }
+            });
+        }
 
-    function winPlayer(objUrl){
-        $("#captchaAudio").html(' <bgsoun src="' + objUrl + '">');       //bgsound 배경음악 제어
-    }
-</script>
+        function audioPlayer(objUrl){
+            document.querySelector('#ccaudio').innerHTML = '<bgsoun src="' +objUrl +'">';
+        }
+    </script>
 
 </head>
 
@@ -102,22 +124,20 @@ function fn_formSubmit(){
                                     <input class="form-control" placeholder="Password" name="userpw" id="userpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
                                 </div>
 
-                                <div class="form-group">
-                                    <label style="display:block">자동 로그인 방지</label>
-                                    <div class="captcha">
-                                        <div class="captcha_child">
-                                            <img id ="captchaImg" title ="캡차 이미지" src="captchaImg.do" alt="캡차 이미지"/>
-                                            <div id ="captchaAudio" style="display:none"></div>
-                                        </div>
-                                        <div class="captcha_child_two">
-                                            <a onclick="javaScript:refreshBtn()" class="refreshBtn">
-                                                <i class="fa fa-refresh" aria-hidden="true"></i> 새로고침
-                                            </a>
-                                            <a onclick="javaScript:audio()" class="refreshBtn">
-                                                <i class="fa fa-volum-up" aria-hidden="true"></i> 음성듣기
-                                            </a>
-                                        </div>
+                                <label style="display:block">자동 로그인 방지</label>
+                                <div style="overflow:hidden">
+                                    <div style="float:left">
+                                        <img id="captchaImage" title="캡차이미지" src="" alt="캡차이미지"/>
+                                        <div id="ccaudio" style="display:none"></div>
                                     </div>
+                                </div>
+                                <div style="padding:3px">
+                                    <input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"/>
+                                    <input id="soundOn" type="button" onclick="javaScript:audio()" value="음성듣기"/>
+                                </div>
+                                <div style="padding:3px">
+                                    <input id="answer" name="answer" type="text" value="">
+                                    <input id="check" name="check" type="button" onclick="" value="확인"/>
                                 </div>
 
                                 <div class="checkbox">

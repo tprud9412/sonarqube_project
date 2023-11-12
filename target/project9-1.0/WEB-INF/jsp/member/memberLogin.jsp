@@ -28,15 +28,80 @@
     <script src="css/sb-admin/bootstrap.min.js"></script>
     <script src="css/sb-admin/metisMenu.min.js"></script>
     <script src="css/sb-admin/sb-admin-2.js"></script>
-	<script src="js/project9.js"></script>    
-<script>
-function fn_formSubmit(){
-	if ( ! chkInputValue("#userid", "<s:message code="common.id"/>")) return false;
-	if ( ! chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
-	
-	$("#form1").submit();
-}
-</script>
+	<script src="js/project9.js"></script>
+
+    <script>
+        function fn_formSubmit() {
+            if (!chkInputValue("#userid", "<s:message code="common.id"/>")) return false;
+            if (!chkInputValue("#userpw", "<s:message code="common.password"/>")) return false;
+
+            $("#form1").submit();
+        }
+
+        window.onload = function(){
+            getImage();	// 이미지 가져오기
+            document.querySelector('#check').addEventListener('click', function(){
+                var params = {answer : document.querySelector('#answer').getAttribute('value')};
+
+                $.ajax({
+                    url: "chkAnswer",
+                    type:"post",
+                    data : {
+                        answer:$("#answer").val(),
+                    },
+                    success: function(returnData){
+                        if(returnData == 200){
+                            alert('입력값이 일치합니다.');
+                            // 성공 코드
+                        }else {
+                            alert('입력값이 일치하지 않습니다.');
+                            getImage();
+                            document.querySelector('#answer').setAttribute('value', '');
+                        }}
+                }, 'json');
+
+            });
+        }
+
+        function audio(){
+            var rand = Math.random();
+            var uAgent = navigator.userAgent;
+            var soundUrl = '${ctx}/captchaAudio?rand='+rand;
+
+            if(uAgent.indexOf('Trident')>-1 || uAgent.indexOf('MISE')>-1){	/*IE 경우 */
+                audioPlayer(soundUrl);
+            }else if(!!document.createElement('audio').canPlayType){ /*Chrome 경우 */
+                try {
+                    new Audio(soundUrl).play();
+                } catch (e) {
+                    audioPlayer(soundUrl);
+                }
+            }else{
+                window.open(soundUrl,'','width=1,height=1');
+            }
+        }
+
+        function getImage(){
+            var timestamp = new Date().getTime(); // 현재 시간을 이용하여 timestamp 생성
+            var url = '${ctx}/captchaImg?timestamp=' + timestamp;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+                    // 이미지 업데이트 또는 다른 필요한 동작 수행
+                    $("#captchaImage").attr("src", url);
+                },
+                error: function(error) {
+                    console.error('Error fetching captcha image:', error);
+                }
+            });
+        }
+
+        function audioPlayer(objUrl){
+            document.querySelector('#ccaudio').innerHTML = '<bgsoun src="' +objUrl +'">';
+        }
+    </script>
 
 </head>
 
@@ -58,6 +123,23 @@ function fn_formSubmit(){
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="userpw" id="userpw" type="password" value="" onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
                                 </div>
+
+                                <label style="display:block">자동 로그인 방지</label>
+                                <div style="overflow:hidden">
+                                    <div style="float:left">
+                                        <img id="captchaImage" title="캡차이미지" src="" alt="캡차이미지"/>
+                                        <div id="ccaudio" style="display:none"></div>
+                                    </div>
+                                </div>
+                                <div style="padding:3px">
+                                    <input id="reload" type="button" onclick="javaScript:getImage()" value="새로고침"/>
+                                    <input id="soundOn" type="button" onclick="javaScript:audio()" value="음성듣기"/>
+                                </div>
+                                <div style="padding:3px">
+                                    <input id="answer" name="answer" type="text" value="">
+                                    <input id="check" name="check" type="button" onclick="" value="확인"/>
+                                </div>
+
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Y"  <c:if test='${userid != null && userid != ""}'>checked</c:if>>Remember Me
