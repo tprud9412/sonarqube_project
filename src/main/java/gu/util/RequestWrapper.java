@@ -19,18 +19,13 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 
     };
 
-
-
     public RequestWrapper(HttpServletRequest servletRequest) {
         super(servletRequest);
     }
 
-
-
     @Override
 
     public String[] getParameterValues(String parameter) {
-
         String[] values = super.getParameterValues(parameter);
 
         if (values == null) {
@@ -45,16 +40,12 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         return encodedValues;
     }
 
-
-
     @Override
 
     public String getParameter(String parameter) {
         String value = super.getParameter(parameter);
         return stripXSS(value);
     }
-
-
 
     @Override
 
@@ -63,11 +54,9 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         return stripXSS(value);
     }
 
-
-
     private String stripXSS(String value) {
-
         if (value != null) {
+
             // null 문자를 제거한다.
             value = value.replaceAll("\0", "");
 

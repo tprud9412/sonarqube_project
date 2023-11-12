@@ -1,6 +1,7 @@
 package gu.util;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -23,7 +24,6 @@ public class CrossScriptingFilter implements Filter {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
         chain.doFilter(new RequestWrapper((HttpServletRequest) request), response);
     }
 

@@ -3,6 +3,8 @@ package gu.board;
 import java.util.HashMap;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Safelist;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,8 +59,9 @@ public class BoardSvc {
         DefaultTransactionDefinition def = new DefaultTransactionDefinition();
         def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
         TransactionStatus status = txManager.getTransaction(def);
-        
+
         try {
+
             if (param.getBrdno() == null || "".equals(param.getBrdno())) {
                  sqlSession.insert("insertBoard", param);
             } else {
